@@ -5,3 +5,49 @@ html,
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+/* Used in order to not be overlapped by the nav bar */
+.body-div {
+    margin-top: 67px;
+    padding: 8px 16px 0px 16px;
+}
+
+/* Buttons color */
+.btn {
+    color: white;
+}
+.btn:hover {
+    color: rgb(223, 223, 223);
+}
+.wapix-btn-yellow {
+    background-color: #DBA824;
+    border-color: #DBA824;
+}
+.wapix-btn-yellow:hover {
+    background-color: #8B791E;
+    border-color: #8B791E;
+}
+.wapix-btn-light-blue {
+    background-color: #40A8C4;
+    border-color: #40A8C4;
+}
+.wapix-btn-light-blue:hover {
+    background-color: #2d7a8f;
+    border-color: #2d7a8f;
+}
+.wapix-btn-dark-blue {
+    background-color: #077C9A;
+    border-color: #077C9A;
+}
+.wapix-btn-dark-blue:hover {
+    background-color: #04657E;
+    border-color: #04657E;
+}
+.wapix-btn-red {
+    background-color: #FF0000;
+    border-color: #FF0000;
+}
+.wapix-btn-red:hover {
+    background-color: #a70000;
+    border-color: #a70000;
+}

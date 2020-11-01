@@ -2,8 +2,6 @@ import { faPlayCircle, faEdit, faTrashAlt, faPlusCircle, faSurprise } from '@for
 
 import { Component, OnInit } from '@angular/core';
 
-import { NavigationBarComponent } from '../../globals/components/navigation-bar/navigation-bar.component';
-
 import { WapixService } from '../../globals/services/wapix.service'
 
 @Component({
@@ -40,7 +38,4 @@ export class ViewWapixComponent implements OnInit {
       });
 
   }
-
-
-
 }

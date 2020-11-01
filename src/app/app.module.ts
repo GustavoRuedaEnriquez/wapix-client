@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './globals/components/navigation-bar/navigation-bar.component';
 import { ViewWapixComponent } from './pages/view-wapix/view-wapix.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EditWapixComponent } from './pages/edit-wapix/edit-wapix.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationBarComponent,
-    ViewWapixComponent
+    ViewWapixComponent,
+    EditWapixComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,3 @@
-#body {
-    margin-top: 67px;
-    padding: 8px 16px 0px 16px;
-}
-
 /* First section */
 #first-div {
     display: inline-block;
@@ -15,13 +10,7 @@
 #new-wapix-btn {
     float:right;
     margin: 10px 0px 10px 0px;
-    background-color: #40A8C4;
-    border-color: #40A8C4;
     font-weight: bold;
-}
-#new-wapix-btn:hover {
-    background-color: #2d7a8f;
-    border-color: #2d7a8f;
 }
 #add-icon {
     margin-right: 10px;
@@ -60,26 +49,6 @@
 .edit-fa-icon {
     margin-left: 10px !important;
 }
-.play-btn {
-    background-color: #DBA824;
-    border-color: #DBA824;
-}
-.play-btn:hover {
-    background-color: #8B791E;
-    border-color: #8B791E;
-}
-.edit-btn {
-    background-color: #40A8C4;
-    border-color: #40A8C4;
-}
-.edit-btn:hover {
-    background-color: #2d7a8f;
-    border-color: #2d7a8f;
-}
-.delete-btn:hover {
-    background-color: #a70000;
-    border-color: #a70000;
-}
 .wapix-fa-icon {
     font-size: 2.4em;
     margin: 0;
@@ -87,4 +56,9 @@
 .wapix-btn-title{
     font-size: 16px;
     font-weight: bold;
+}
+.action-btn {
+    margin: 17px;
+    width: 100px;
+    height: 100px;
 }

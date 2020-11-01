@@ -1,11 +1,11 @@
 <app-navigation-bar></app-navigation-bar>
 
-<div id="body">
+<div class="body-div">
 
     <!-- header -->
     <div id="first-div">
         <h1 id="title">Mis Wapix</h1>
-        <button id="new-wapix-btn" class="btn btn-primary">
+        <button id="new-wapix-btn" class="btn wapix-btn-light-blue">
             <fa-icon id="add-icon" [icon]="faPlusCircle"></fa-icon>Nuevo Wapix
         </button>
     </div>
@@ -19,7 +19,7 @@
     <!-- div to show if you DO have Wapix -->
     <div *ngIf="wapixes.length != 0" id="wapix-list-div">
         <div class="wapix-list-element-div" *ngFor="let wapix of wapixes">
-            <div class="wapix-list-details-div" >
+            <div class="wapix-list-details-div">
                 <h2>{{wapix.name}}</h2>
                 <div class="wapix-details-div">
                     <h3>Preguntas: {{wapix.questions.length}}</h3>
@@ -28,20 +28,20 @@
             </div>
             
             <div class="wapix-list-buttons-div">
-                <button class="btn btn-primary play-btn">
+                <a routerLink="" class="btn wapix-btn-yellow action-btn">
                     <fa-icon class="wapix-fa-icon" [icon]="faPlayCircle"></fa-icon>
                     <p class="wapix-btn-title">Jugar</p>
-                </button>
+                </a>
 
-                <button class="btn btn-primary edit-btn">
+                <a routerLink="{{wapix._id}}" class="btn wapix-btn-light-blue action-btn">
                     <fa-icon class="wapix-fa-icon edit-fa-icon" [icon]="faEdit"></fa-icon>
                     <p class="wapix-btn-title">Editar</p>
-                </button>
+                </a>
                 
-                <button class="btn btn-danger  delete-btn">
+                <a routerLink="" class="btn wapix-btn-red action-btn">
                     <fa-icon class="wapix-fa-icon" [icon]="faTrashAlt"></fa-icon>
                     <p class="wapix-btn-title">Borrar</p>
-                </button>
+                </a>
             </div>
         </div>
     </div>
