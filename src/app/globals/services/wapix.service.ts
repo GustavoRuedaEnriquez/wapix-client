@@ -1,9 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WapixService {
 
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
+
+  getWapixFromUser(email:string, token:string):Promise<any> {
+    let url:string = `http://127.0.0.1:3003/api/wapix/creator/${email}`;
+    let requestHeaders = {
+      'Authorization' : `${token}`
+    }
+    return this.httpClient.get(url,{ headers : requestHeaders}).toPromise();
+  }
+
+
 }

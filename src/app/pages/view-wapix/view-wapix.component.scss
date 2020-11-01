@@ -3,25 +3,88 @@
     padding: 8px 16px 0px 16px;
 }
 
+/* First section */
 #first-div {
     display: inline-block;
     width: 100%;
 }
-
 #title {
     float: left;
     color: #077C9A;
 }
 #new-wapix-btn {
-    font-weight: bold;
     float:right;
     margin: 10px 0px 10px 0px;
     background-color: #40A8C4;
+    border-color: #40A8C4;
+    font-weight: bold;
 }
 #new-wapix-btn:hover {
     background-color: #2d7a8f;
+    border-color: #2d7a8f;
 }
-
 #add-icon {
     margin-right: 10px;
+}
+
+/* No wapix */
+#fa-icon-surprise {
+    font-size: 6em;
+    color : #077C9A;
+}
+
+/* List */
+.wapix-list-element-div {
+    display: inline-block;
+    width: 100%;
+    margin: 20px 0px;
+    padding: 10px 20px;
+    border: 1px solid gray; 
+    box-shadow: 0px 10px 10px grey;
+}
+.wapix-list-details-div {
+    float: left;
+}
+.wapix-details-div p {
+    margin: 0px;
+}
+.wapix-list-buttons-div {
+    float:right;
+}
+.wapix-list-buttons-div button{
+    text-align: center;
+    margin: 15px 15px 15px 15px;
+    width: 100px;
+    height: 100px;
+}
+.edit-fa-icon {
+    margin-left: 10px !important;
+}
+.play-btn {
+    background-color: #DBA824;
+    border-color: #DBA824;
+}
+.play-btn:hover {
+    background-color: #8B791E;
+    border-color: #8B791E;
+}
+.edit-btn {
+    background-color: #40A8C4;
+    border-color: #40A8C4;
+}
+.edit-btn:hover {
+    background-color: #2d7a8f;
+    border-color: #2d7a8f;
+}
+.delete-btn:hover {
+    background-color: #a70000;
+    border-color: #a70000;
+}
+.wapix-fa-icon {
+    font-size: 2.4em;
+    margin: 0;
+}
+.wapix-btn-title{
+    font-size: 16px;
+    font-weight: bold;
 }
