@@ -1,5 +1,3 @@
-<app-navigation-bar></app-navigation-bar>
-
 <div class="body-div">
 
     <!-- header -->
@@ -11,7 +9,13 @@
     </div>
 
     <!-- div to show if you DO NOT have Wapix -->
-    <div *ngIf="wapixes.length == 0" id="wapix-blank-list-div" class="text-center">
+    <div *ngIf="hasError == true" id="wapix-blank-list-div" class="text-center">
+        <fa-icon id="fa-icon-surprise" [icon]="faSurprise"></fa-icon>
+        <h2>¡Vaya! Algo salió mal. Inténtelo más tarde</h2>
+    </div>
+
+    <!-- div to show if you DO NOT have Wapix -->
+    <div *ngIf="wapixes.length == 0 && isLoading == false" id="wapix-blank-list-div" class="text-center">
         <fa-icon id="fa-icon-surprise" [icon]="faSurprise"></fa-icon>
         <h2>¡No tienes Wapix aún!</h2>
     </div>
