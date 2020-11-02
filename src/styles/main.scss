@@ -15,6 +15,7 @@ body {
 /* Buttons color */
 .btn {
     color: white;
+    font-weight: bold;
 }
 .btn:hover {
     color: rgb(223, 223, 223);
@@ -50,4 +51,8 @@ body {
 .wapix-btn-red:hover {
     background-color: #a70000;
     border-color: #a70000;
+}
+
+.whole-width {
+    width: 100%;
 }

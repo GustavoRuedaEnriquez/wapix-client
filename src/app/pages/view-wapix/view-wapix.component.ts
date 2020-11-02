@@ -30,7 +30,6 @@ export class ViewWapixComponent implements OnInit {
 
     this.wapixService.getWapixFromUser(email, token)
       .then( data => {
-        console.log(data);
         this.wapixes = data.wapix;
       })
       .catch( err => {

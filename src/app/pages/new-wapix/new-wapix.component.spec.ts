@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditWapixComponent } from './edit-wapix.component';
+import { NewWapixComponent } from './new-wapix.component';
 
-describe('EditWapixComponent', () => {
-  let component: EditWapixComponent;
-  let fixture: ComponentFixture<EditWapixComponent>;
+describe('NewWapixComponent', () => {
+  let component: NewWapixComponent;
+  let fixture: ComponentFixture<NewWapixComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditWapixComponent ]
+      declarations: [ NewWapixComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditWapixComponent);
+    fixture = TestBed.createComponent(NewWapixComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

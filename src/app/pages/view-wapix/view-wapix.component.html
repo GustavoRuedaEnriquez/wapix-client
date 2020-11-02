@@ -5,9 +5,9 @@
     <!-- header -->
     <div id="first-div">
         <h1 id="title">Mis Wapix</h1>
-        <button id="new-wapix-btn" class="btn wapix-btn-light-blue">
+        <a routerLink="new" id="new-wapix-btn" class="btn wapix-btn-light-blue">
             <fa-icon id="add-icon" [icon]="faPlusCircle"></fa-icon>Nuevo Wapix
-        </button>
+        </a>
     </div>
 
     <!-- div to show if you DO NOT have Wapix -->
@@ -33,7 +33,7 @@
                     <p class="wapix-btn-title">Jugar</p>
                 </a>
 
-                <a routerLink="{{wapix._id}}" class="btn wapix-btn-light-blue action-btn">
+                <a routerLink="" class="btn wapix-btn-light-blue action-btn">
                     <fa-icon class="wapix-fa-icon edit-fa-icon" [icon]="faEdit"></fa-icon>
                     <p class="wapix-btn-title">Editar</p>
                 </a>

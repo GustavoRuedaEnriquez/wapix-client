@@ -8,6 +8,14 @@ export class WapixService {
 
   constructor(private httpClient:HttpClient) { }
 
+  getWapixFromId(id:string, token:string):Promise<any> {
+    let url:string = `http://127.0.0.1:3003/api/wapix/${id}`;
+    let requestHeaders = {
+      'Authorization' : `${token}`
+    }
+    return this.httpClient.get(url,{ headers : requestHeaders}).toPromise();
+  }
+
   getWapixFromUser(email:string, token:string):Promise<any> {
     let url:string = `http://127.0.0.1:3003/api/wapix/creator/${email}`;
     let requestHeaders = {
@@ -15,6 +23,8 @@ export class WapixService {
     }
     return this.httpClient.get(url,{ headers : requestHeaders}).toPromise();
   }
+
+  
 
 
 }

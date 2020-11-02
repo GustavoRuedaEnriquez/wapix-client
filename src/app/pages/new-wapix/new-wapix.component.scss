@@ -1,0 +1,45 @@
+#top-part {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#top-actions-details-div {
+    float:left;
+    
+}
+#top-actions-details-div input {
+    width: 465px;
+    font-size: 1.4em;
+}
+
+#top-action-btns-div {
+    float:right;
+    margin: 23px 0px 23px 0px;
+}
+#top-action-btns-div button{
+    margin: 0px 17px;
+}
+.wapix-icon {
+    margin-right: 10px;
+}
+.wapix-rules {
+    padding: 0px 15px;
+}
+
+/* Styles for the Q/A configuration */
+.small-padding {
+    padding: 0px 5px 5px 5px;
+}
+.time-in {
+    margin-left: 5px;
+    width : 50px;
+}
+.points-in {
+    margin-left: 10px;
+    width : 60px;
+}
+.game-in {
+    margin-left: 5px;
+    width : 130px;
+}
