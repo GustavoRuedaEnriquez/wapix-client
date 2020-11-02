@@ -9,7 +9,7 @@ import { faSave,
 
 /* Required modules */
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 /* Required components */
 import { WapixService } from '../../globals/services/wapix.service'
@@ -38,18 +38,60 @@ export class NewWapixComponent implements OnInit {
   ngOnInit(): void {
     this.wapixForm = this.fb.group({
       name: [''],
-      questions: this.fb.group({
-        questionText : [''],
-        questionType : ['text'],
-        questionTime : ['10'],
-        maxPoints : ['100'],
-        gameMode : ['normal']
-      })
+      questions: this.fb.array([
+        this.addQuestionFormGroup()
+      ])
     });
   }
 
   onSubmit(): void {
     console.log(this.wapixForm.value);
   }
+
+  addQuestionFormGroup():FormGroup {
+    return this.fb.group({
+      questionText : [''],
+      questionType : ['text'],
+      questionTime : ['10'],
+      maxPoints : ['100'],
+      gameMode : ['normal'],
+      answers: this.fb.array([
+        this.addAnswerFormGroup()
+      ])
+    })
+  }
+
+  addAnswerFormGroup():FormGroup {
+    return this.fb.group({
+      answerText : [''],
+      isCorrect : ['']
+    })
+  }
+
+  getQuestionControls():AbstractControl[] {
+    return (<FormArray>this.wapixForm.get('questions')).controls;
+  }
+
+  getAnswerControls(index:number):AbstractControl[] {
+    return (<FormArray>(<FormArray>this.wapixForm.get('questions')).controls[index].get('answers')).controls;
+  }
+
+  addQuestionButtonClick():void {
+    (<FormArray>this.wapixForm.get('questions')).push(this.addQuestionFormGroup());
+  }
+
+  addAnswerButtonClick(index:number):void {
+    (<FormArray>(<FormArray>this.wapixForm.get('questions')).controls[index].get('answers')).push(this.addAnswerFormGroup());
+  }
+
+  removeQuestionButtonClick(questionIndex:number):void {
+    (<FormArray>this.wapixForm.get('questions')).removeAt(questionIndex);
+  }
+
+  removeAnswerButtonClick(questionIndex:number, answerIndex:number):void {
+    (<FormArray>(<FormArray>this.wapixForm.get('questions')).controls[questionIndex].get('answers')).removeAt(answerIndex);
+  }
+
+
 
 }

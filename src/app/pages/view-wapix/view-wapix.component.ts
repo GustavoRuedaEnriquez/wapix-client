@@ -26,7 +26,7 @@ export class ViewWapixComponent implements OnInit {
       for now, it is hardcoded.
     */
     let email:string = 'gare_98@hotmail.com';
-    let token:string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjliMTA2NmViOWY5MDkxMDc0MDRkYTQiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQxOTYyNDksImV4cCI6MTYwNDI4MjY0OX0.ze-JuaNgopJv3WSlSkhLVnyc0eTT0SaaNvSbee3piXA'
+    let token:string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjliMTA2NmViOWY5MDkxMDc0MDRkYTQiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQyODc1MDEsImV4cCI6MTYwNDM3MzkwMX0.098_dds3ZRDPSdzPE4v2wRa_Y8c8UkjAChbWdrgYjAE'
 
     this.wapixService.getWapixFromUser(email, token)
       .then( data => {

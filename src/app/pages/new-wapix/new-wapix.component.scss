@@ -28,6 +28,13 @@
 }
 
 /* Styles for the Q/A configuration */
+.qa-element {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
 .small-padding {
     padding: 0px 5px 5px 5px;
 }
@@ -42,4 +49,35 @@
 .game-in {
     margin-left: 5px;
     width : 130px;
+}
+.answer-types-select {
+    height: 33px;
+    margin: 0px 15px 0px 7px;
+}
+.answer-in {
+    width: 390px;
+}
+.answer-valid-label {
+    margin-left: 10px;
+}
+
+.add-question-btn {
+    margin: 25px 0px;
+}
+.remove-answer-btn {
+    height: 20px;
+    border-radius: 50%;
+    color: white;
+    margin-left: 10px;
+    border: none;
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+}
+.remove-question-btn-div {
+    position: absolute;
+    width: fit-content;
+    top: 0;
+    right: 0;
+    margin:15px 15px;
 }

@@ -14,66 +14,103 @@
                 <button class="btn wapix-btn-yellow" type="submit">
                     <fa-icon class="wapix-icon" [icon]="faSave"></fa-icon>Guardar
                 </button>
-                <button class="btn wapix-btn-red">
+                <a routerLink=".." class="btn wapix-btn-red">
                     <fa-icon class="wapix-icon" [icon]="faChevronLeft"></fa-icon>Regresar
-                </button>
+                </a>
             </div>
         </div>
 
-        <div class="grid" formGroupName="questions">
+        <div formArrayName="questions" *ngFor="let question of getQuestionControls();let i = index">
 
-            <!-- Question -->
-            <div class="border grid wapix-rules wapix-question-div sm-100 md-50 lg-50">
-                <h3 style="color: #077C9A;"><fa-icon class="wapix-icon" [icon]="faQuestionCircle"></fa-icon> Pregunta</h3>
-                <!-- Question's text -->
-                <div class="sm-75 md-75 lg-75 small-padding">
-                    <label for="question-in">Texto de la pregunta</label>
-                    <br>
-                    <input name="question-in" class="whole-width" type="text" formControlName="questionText">
-                </div>
-                <!-- Question's type -->
-                <div class="sm-25 md-25 lg-25 small-padding">
-                    <label for="questionType-s">Tipo</label>
-                    <br>
-                    <select style="height: 30px;" name="questionType-s" class="whole-width" formControlName="questionType">
-                        <option value="text">Sólo texto</option> 
-                        <option value="images">Imágenes</option>
-                        <option value="audio">Audio</option>
-                    </select>
-                </div>
-                <!-- Question's settings -->
-                <div class="grid" style="padding-top: 10px;">
-                    <!-- Question's time -->
-                    <div class="sm-33 md-33 lg-33 small-padding">
-                        <label for="time-in"><fa-icon class="wapix-icon" [icon]="faClock"></fa-icon>Tiempo</label>
-                        <input name="time-in" class="time-in" type="number" min="10" max="180" formControlName="questionTime">
-                        seg.
+            <div class="qa-element grid" [formGroupName]="i">
+
+                <!-- Question -->
+                <div class="grid wapix-rules wapix-question-div sm-100 md-50 lg-50">
+                    <h3 style="color: #077C9A;"><fa-icon class="wapix-icon" [icon]="faQuestionCircle"></fa-icon> Pregunta</h3>
+                    <!-- Question's text -->
+                    <div class="sm-75 md-75 lg-75 small-padding">
+                        <label for="question-in">Texto de la pregunta</label>
+                        <br>
+                        <input name="question-in" class="whole-width" type="text" formControlName="questionText">
                     </div>
-                    <!-- Question's points -->
-                    <div class="sm-33 md-33 lg-33 small-padding">
-                        <label for="points-in"><fa-icon class="wapix-icon" [icon]="faTrophy"></fa-icon>Puntos máx.</label>
-                        <input name="points-in" class="points-in" type="number" min="100" max="1000" formControlName="maxPoints">
-                    </div>
-                    <!-- Question's mode -->
-                    <div class="sm-33 md-33 lg-33 small-padding">
-                        <label for="gameType-s"><fa-icon class="wapix-icon" [icon]="faDice"></fa-icon>Modo</label>
-                        <select style="height: 30px;" name="gameType-s" class="game-in" formControlName="gameMode">
-                            <option value="normal">Normal</option> 
-                            <option value="double">Puntos dobles</option>
-                            <option value="punish">Castigo</option>
+                    <!-- Question's type -->
+                    <div class="sm-25 md-25 lg-25 small-padding">
+                        <label for="questionType-s">Tipo</label>
+                        <br>
+                        <select style="height: 30px;" name="questionType-s" class="whole-width" formControlName="questionType">
+                            <option value="text">Sólo texto</option> 
+                            <option value="images">Imágenes</option>
+                            <option value="audio">Audio</option>
                         </select>
                     </div>
-                </div>  
+                    <!-- Question's settings -->
+                    <div class="grid" style="padding-top: 10px;">
+                        <!-- Question's time -->
+                        <div class="sm-33 md-33 lg-33 small-padding">
+                            <label for="time-in"><fa-icon class="wapix-icon" [icon]="faClock"></fa-icon>Tiempo</label>
+                            <input name="time-in" class="time-in" type="number" min="10" max="180" formControlName="questionTime">
+                            seg.
+                        </div>
+                        <!-- Question's points -->
+                        <div class="sm-33 md-33 lg-33 small-padding">
+                            <label for="points-in"><fa-icon class="wapix-icon" [icon]="faTrophy"></fa-icon>Puntos máx.</label>
+                            <input name="points-in" class="points-in" type="number" min="100" max="1000" formControlName="maxPoints">
+                        </div>
+                        <!-- Question's mode -->
+                        <div class="sm-33 md-33 lg-33 small-padding">
+                            <label for="gameType-s"><fa-icon class="wapix-icon" [icon]="faDice"></fa-icon>Modo</label>
+                            <select style="height: 30px;" name="gameType-s" class="game-in" formControlName="gameMode">
+                                <option value="normal">Normal</option> 
+                                <option value="double">Puntos dobles</option>
+                                <option value="punish">Castigo</option>
+                            </select>
+                        </div>
+                    </div>  
+                </div>
+    
+    
+                <!-- Answer -->
+                <div class="wapix-rules wapix-answers-div sm-100 md-50 lg-50">
+                    <h3 style="color: #077C9A;"><fa-icon class="wapix-icon" [icon]="faCheckCircle"></fa-icon> Respuesta</h3>
+                    <!-- Answer type -->
+                    <div>
+                        <label for="answerType-s">Tipo de respuestas:</label>
+                        <select class="answer-types-select" name="answerType-s">
+                            <option value="text">Sólo texto</option> 
+                            <option value="images">Imágenes</option>
+                        </select>
+                        <button *ngIf="getAnswerControls(i).length != 4" style="margin-bottom: 10px;" class="btn wapix-btn-light-blue" (click)="addAnswerButtonClick(i)">
+                            Agregar respuesta
+                        </button>
+                    </div>
+                    <!-- Answer container -->
+                    <div formArrayName="answers" *ngFor="let answer of getAnswerControls(i);let j = index">
+                        <div [formGroupName]="j">
+                            <input class="answer-in" type="text" placeholder="Respuesta" formControlName="answerText">
+                            <label class="answer-valid-label">
+                                <input type="checkbox" value="true" formControlName="isCorrect">
+                                Es correcta
+                            </label>
+                            <button *ngIf="getAnswerControls(i).length != 1" class="wapix-btn-red remove-answer-btn" (click)="removeAnswerButtonClick(i,j)">X</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Remove question btn -->
+                <div *ngIf="getQuestionControls().length != 1" class="remove-question-btn-div border">
+                    <button class="btn wapix-btn-red" (click)="removeQuestionButtonClick(i)">Eliminar pregunta</button>
+                </div>
+
             </div>
 
-
-            <!-- Answer -->
-            <div class="border wapix-rules wapix-answers-div sm-100 md-50 lg-50">
-                <h3 style="color: #077C9A;"><fa-icon class="wapix-icon" [icon]="faCheckCircle"></fa-icon> Respuesta</h3>
-            </div>
         </div>
 
-
+        <!-- Add question button -->
+        <div>
+            <button class="btn wapix-btn-dark-blue add-question-btn" (click)="addQuestionButtonClick()">
+                Agregar pregunta
+            </button>
+        </div>
 
     </form>
 
