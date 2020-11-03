@@ -10,12 +10,20 @@ export class WapixService {
 
   constructor(private httpClient:HttpClient) { }
 
+  createWapix(wapix:any, token:string):Promise<any> {
+    let url:string = environment.apiUrl + "wapix";
+    let requestHeaders = {
+      'Authorization' : `${token}`
+    }
+    return this.httpClient.post(url,wapix,{ headers : requestHeaders }).toPromise();
+  }
+
   getWapixFromId(id:string, token:string):Promise<any> {
     let url:string = environment.apiUrl + `wapix/${id}`;
     let requestHeaders = {
       'Authorization' : `${token}`
     }
-    return this.httpClient.get(url,{ headers : requestHeaders}).toPromise();
+    return this.httpClient.get(url,{ headers : requestHeaders }).toPromise();
   }
 
   getWapixFromUser(email:string, token:string):Promise<any> {
@@ -23,10 +31,7 @@ export class WapixService {
     let requestHeaders = {
       'Authorization' : `${token}`
     }
-    return this.httpClient.get(url,{ headers : requestHeaders}).toPromise();
+    return this.httpClient.get(url,{ headers : requestHeaders }).toPromise();
   }
-
-  
-
 
 }

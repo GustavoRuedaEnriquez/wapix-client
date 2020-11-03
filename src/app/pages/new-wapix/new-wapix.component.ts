@@ -1,18 +1,10 @@
-/* Font-awesome Icons */
-import { faSave,
-         faChevronLeft,
-         faQuestionCircle,
-         faCheckCircle,
-         faClock,
-         faDice,
-         faTrophy } from '@fortawesome/free-solid-svg-icons';
-
 /* Required modules */
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 /* Required components */
 import { WapixService } from '../../globals/services/wapix.service'
+
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-new-wapix',
@@ -21,77 +13,29 @@ import { WapixService } from '../../globals/services/wapix.service'
 })
 export class NewWapixComponent implements OnInit {
 
-  faSave = faSave;
-  faChevronLeft = faChevronLeft;
-  faQuestionCircle = faQuestionCircle;
-  faCheckCircle = faCheckCircle;
-  faClock =faClock;
-  faDice = faDice;
-  faTrophy = faTrophy;
+  wapixNewObject:any = {}
+  
 
-  wapixForm: FormGroup;
+  constructor(private wapixService:WapixService) {  }
 
-  selectedOption: string="value1";
+  ngOnInit(): void {  }
 
-  constructor(private wapixService:WapixService, private fb:FormBuilder) {  }
+  saveWapix(wapix:any):void {
+    /*
+      Obtain the token and the email from the session,
+      for now, it is hardcoded.
+    */
+    let email:string = 'gare_98@hotmail.com';
+    wapix.creator = email;
 
-  ngOnInit(): void {
-    this.wapixForm = this.fb.group({
-      name: [''],
-      questions: this.fb.array([
-        this.addQuestionFormGroup()
-      ])
-    });
+    this.wapixService.createWapix(wapix, environment.token)
+      .then( data => {
+        alert("Wapix creado.");
+      })
+      .catch( err => {
+        console.error(err);
+        alert("Sucedió un error a la hora de crear el wapix");
+      })
   }
-
-  onSubmit(): void {
-    console.log(this.wapixForm.value);
-  }
-
-  addQuestionFormGroup():FormGroup {
-    return this.fb.group({
-      questionText : [''],
-      questionType : ['text'],
-      questionTime : ['10'],
-      maxPoints : ['100'],
-      gameMode : ['normal'],
-      answers: this.fb.array([
-        this.addAnswerFormGroup()
-      ])
-    })
-  }
-
-  addAnswerFormGroup():FormGroup {
-    return this.fb.group({
-      answerText : [''],
-      isCorrect : ['']
-    })
-  }
-
-  getQuestionControls():AbstractControl[] {
-    return (<FormArray>this.wapixForm.get('questions')).controls;
-  }
-
-  getAnswerControls(index:number):AbstractControl[] {
-    return (<FormArray>(<FormArray>this.wapixForm.get('questions')).controls[index].get('answers')).controls;
-  }
-
-  addQuestionButtonClick():void {
-    (<FormArray>this.wapixForm.get('questions')).push(this.addQuestionFormGroup());
-  }
-
-  addAnswerButtonClick(index:number):void {
-    (<FormArray>(<FormArray>this.wapixForm.get('questions')).controls[index].get('answers')).push(this.addAnswerFormGroup());
-  }
-
-  removeQuestionButtonClick(questionIndex:number):void {
-    (<FormArray>this.wapixForm.get('questions')).removeAt(questionIndex);
-  }
-
-  removeAnswerButtonClick(questionIndex:number, answerIndex:number):void {
-    (<FormArray>(<FormArray>this.wapixForm.get('questions')).controls[questionIndex].get('answers')).removeAt(answerIndex);
-  }
-
-
 
 }
