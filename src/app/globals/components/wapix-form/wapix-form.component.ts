@@ -35,7 +35,7 @@ export class WapixFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.wapixForm = this.fb.group({
-      name: [''],
+      name: ['', Validators.required],
       questions: this.fb.array([
         this.addBlankQuestionFormGroup()
       ])
@@ -48,26 +48,21 @@ export class WapixFormComponent implements OnInit {
   onSubmit(): void {
     if(this.wapixForm.valid) {
       this.onSubmitEvent.emit(this.wapixForm.value);
+    } else {
+      alert("Por favor llene todos los campos requeridos");
     }
   }
 
   parseObjectToFormGroupAndUpdateForm(object:any):void {
-    console.log("Cargando wapix ya existente.");
-    console.log(object);
-
-    this.questions().removeAt(0);
-    
+    this.questions().removeAt(0);    
     for(let i = 0; i < object.questions.length; i++) {
-      let tempQuestion:FormGroup = this.addBlankQuestionFormGroup();
+      let tempQuestion:FormGroup = this.addBlankQuestionFormGroupEmptyAnswer();
       this.questions().push(tempQuestion);
-      console.log(object.questions[i].answers.length)
-      for(let j = 0; j < object.questions[i].answers.length - 1; j++) {
-        console.log(j)
+      for(let j = 0; j < object.questions[i].answers.length; j++) {
         let tempAnswer:FormGroup = this.addBlankAnswerFormGroup();
         this.answers(i).push(tempAnswer);
       }
     }
-    
     this.wapixForm.patchValue({
       name : object.name,
       questions : object.questions
@@ -76,11 +71,11 @@ export class WapixFormComponent implements OnInit {
 
   addBlankQuestionFormGroup():FormGroup {
     return this.fb.group({
-      questionText : [''],
-      questionType : ['text'],
-      questionTime : ['10'],
-      maxPoints : ['100'],
-      gameMode : ['normal'],
+      questionText : ['', Validators.required],
+      questionType : ['text', Validators.required],
+      questionTime : ['10', Validators.required],
+      maxPoints : ['100', Validators.required],
+      gameMode : ['normal', Validators.required],
       answers: this.fb.array([
         this.addBlankAnswerFormGroup()
       ])
@@ -89,18 +84,18 @@ export class WapixFormComponent implements OnInit {
 
   addBlankQuestionFormGroupEmptyAnswer():FormGroup {
     return this.fb.group({
-      questionText : [''],
-      questionType : ['text'],
-      questionTime : ['10'],
-      maxPoints : ['100'],
-      gameMode : ['normal'],
+      questionText : ['', Validators.required],
+      questionType : ['text', Validators.required],
+      questionTime : ['10', Validators.required],
+      maxPoints : ['100', Validators.required],
+      gameMode : ['normal', Validators.required],
       answers: this.fb.array([])
     })
   }
 
   addBlankAnswerFormGroup():FormGroup {
     return this.fb.group({
-      answerText : [''],
+      answerText : ['', Validators.required],
       isCorrect : ['']
     })
   }

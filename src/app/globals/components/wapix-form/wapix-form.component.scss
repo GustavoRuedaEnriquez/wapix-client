@@ -1,3 +1,7 @@
+input.ng-touched.ng-invalid {
+    border-color: #c71a1a;
+}
+
 #top-part {
     display: inline-block;
     width: 100%;
@@ -5,8 +9,7 @@
 }
 
 #top-actions-details-div {
-    float:left;
-    
+    float:left; 
 }
 #top-actions-details-div input {
     width: 465px;
