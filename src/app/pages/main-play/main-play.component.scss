@@ -1,0 +1,53 @@
+/* div */
+.center {
+    background-color: #26acce;
+    border-radius: 5px;
+    color: white;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+div.left {
+    display: inline-block;
+    color: white;
+}
+
+div.right {
+    float: right;
+    color: white;
+}
+
+
+/* other components */
+
+ul {
+    padding-top: 10px;
+    display: flex;
+    flex-flow: row wrap;
+
+    li {
+        display:inline-block;
+        list-style: none;
+        padding-top: 20px;
+        padding-right: 40px;
+        font-weight: 800;
+        font-size: 25px;
+    }
+}
+
+h3 {
+    color:  #04657E;
+}
+
+h4 {
+    color: black;
+}
+
+.btn-play {
+    position: absolute;
+    transform: translateY(-50%);
+    margin-top: 30px;
+    left: 45%;
+    padding: 10px;
+    
+}

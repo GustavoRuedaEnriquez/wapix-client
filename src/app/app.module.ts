@@ -10,13 +10,19 @@ import { NavigationBarComponent } from './globals/components/navigation-bar/navi
 import { ViewWapixComponent } from './pages/view-wapix/view-wapix.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewWapixComponent } from './pages/new-wapix/new-wapix.component';
+import { GuestPlayComponent } from './pages/guest-play/guest-play.component';
+import { MainPlayComponent } from './pages/main-play/main-play.component';
+import { MainNavigationBarComponent } from './globals/components/main-navigation-bar/main-navigation-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationBarComponent,
     ViewWapixComponent,
-    NewWapixComponent
+    NewWapixComponent,
+    GuestPlayComponent,
+    MainPlayComponent,
+    MainNavigationBarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+div.center {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    padding: 55px;
+    background-color: #04657E;
+    border-radius: 5px;
+    color: white;
+}
+
+div.body-main {
+    height: 1000px;
+    width: 100%;
+    background: red;
+    animation: mymove 5s infinite;
+  }
+  
+  @keyframes mymove {
+    from {background-color: rgb(201, 67, 67);}
+    to {background-color: rgb(85, 85, 255);}
+  }
+
+input {
+    border-radius: 20px;
+    text-align: center;
+}
+
+.btn-guest {
+    position: absolute;
+    left: 40%;
+    padding: 10px;
+}
