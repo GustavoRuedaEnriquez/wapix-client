@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainPlayComponent } from './main-play.component';
+import { WapixFormComponent } from './wapix-form.component';
 
-describe('MainPlayComponent', () => {
-  let component: MainPlayComponent;
-  let fixture: ComponentFixture<MainPlayComponent>;
+describe('WapixFormComponent', () => {
+  let component: WapixFormComponent;
+  let fixture: ComponentFixture<WapixFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainPlayComponent ]
+      declarations: [ WapixFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainPlayComponent);
+    fixture = TestBed.createComponent(WapixFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
