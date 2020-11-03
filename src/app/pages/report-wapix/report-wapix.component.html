@@ -1,0 +1,35 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="body-div">
+    <div class="small-padding">
+        <h1> Generar Reporte</h1>
+    </div>
+
+    <div class="center">
+        <div class="grid sm-100 md-50 lg-50">
+            <!-- Wapix -->
+            <div class="sm-25 md-25 lg-25 small-padding">
+                <label for="questionType-s">Seleccione Wapix</label>
+                <br>
+                <select name="selectWapix" class="whole-width">
+                    <option value="text">-</option> 
+                    <option value="text">Wapix 1</option> 
+                    <option value="text">Wapix 2</option> 
+                </select>
+            </div>
+            <!-- Date -->
+            <div class="sm-25 md-25 lg-25 small-padding">
+                <label for="questionType-s">Seleccione Fecha</label>
+                <br>
+                <select name="selectDate" class="whole-width">
+                    <option value="text">-</option> 
+                    <option value="text">Fecha 1</option> 
+                    <option value="text">Fecha 2</option> 
+                </select>
+            </div> 
+            <br>
+            <button class="wapix-btn-dark-blue">
+                <fa-icon [icon]="faSearchPlus"></fa-icon>
+            </button>
+        </div>
+    </div>
+</div>

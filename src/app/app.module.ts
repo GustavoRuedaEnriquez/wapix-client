@@ -13,6 +13,7 @@ import { NewWapixComponent } from './pages/new-wapix/new-wapix.component';
 import { GuestPlayComponent } from './pages/guest-play/guest-play.component';
 import { MainPlayComponent } from './pages/main-play/main-play.component';
 import { MainNavigationBarComponent } from './globals/components/main-navigation-bar/main-navigation-bar.component';
+import { ReportWapixComponent } from './pages/report-wapix/report-wapix.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MainNavigationBarComponent } from './globals/components/main-navigation
     NewWapixComponent,
     GuestPlayComponent,
     MainPlayComponent,
-    MainNavigationBarComponent
+    MainNavigationBarComponent,
+    ReportWapixComponent
   ],
   imports: [
     BrowserModule,
