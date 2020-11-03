@@ -10,13 +10,19 @@ import { NavigationBarComponent } from './globals/components/navigation-bar/navi
 import { ViewWapixComponent } from './pages/view-wapix/view-wapix.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewWapixComponent } from './pages/new-wapix/new-wapix.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationBarComponent,
     ViewWapixComponent,
-    NewWapixComponent
+    NewWapixComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

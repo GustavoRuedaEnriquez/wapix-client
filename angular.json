@@ -128,6 +128,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "wapix-client"
+    }
+  },
+  "defaultProject": "wapix-client",
+  "cli": {
+    "analytics": "ced3e0af-621f-4400-a6d4-6e618bc69797"
+  }
 }
