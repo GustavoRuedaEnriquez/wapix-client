@@ -11,6 +11,7 @@ import { ViewWapixComponent } from './pages/view-wapix/view-wapix.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewWapixComponent } from './pages/new-wapix/new-wapix.component';
 import { WapixFormComponent } from './globals/components/wapix-form/wapix-form.component';
+import { EditWapixComponent } from './pages/edit-wapix/edit-wapix.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { WapixFormComponent } from './globals/components/wapix-form/wapix-form.c
     NavigationBarComponent,
     ViewWapixComponent,
     NewWapixComponent,
-    WapixFormComponent
+    WapixFormComponent,
+    EditWapixComponent
   ],
   imports: [
     BrowserModule,

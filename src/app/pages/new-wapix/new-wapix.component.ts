@@ -34,7 +34,7 @@ export class NewWapixComponent implements OnInit {
       })
       .catch( err => {
         console.error(err);
-        alert("Sucedió un error a la hora de crear el wapix");
+        alert("Sucedió un error a la hora de crear el wapix.");
       })
   }
 
