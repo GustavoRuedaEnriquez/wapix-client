@@ -4,30 +4,24 @@
         <h1> Generar Reporte</h1>
     </div>
 
+    <!-- div to show if you DO NOT have Wapix -->
+    <div *ngIf="wapixes.length == 0" id="wapix-blank-list-div" class="text-center">
+        <fa-icon id="fa-icon-surprise" [icon]="faSurprise"></fa-icon>
+        <h2>¡No tienes Wapix aún!</h2>
+    </div>
+    <!-- div to show if you DO have Wapix -->
     <div class="center">
-        <div class="grid sm-100 md-50 lg-50">
+        <div *ngIf="wapixes.length != 0" class="grid sm-100 md-50 lg-50">
             <!-- Wapix -->
             <div class="sm-25 md-25 lg-25 small-padding">
                 <label for="questionType-s">Seleccione Wapix</label>
                 <br>
-                <select name="selectWapix" class="whole-width">
-                    <option value="text">-</option> 
-                    <option value="text">Wapix 1</option> 
-                    <option value="text">Wapix 2</option> 
+                <select name="selectWapix" class="whole-width" id="selectWapix">
+                    <option *ngFor="let wapix of wapixes" value="{{wapix._id}}">{{wapix.name}}</option> 
                 </select>
             </div>
-            <!-- Date -->
-            <div class="sm-25 md-25 lg-25 small-padding">
-                <label for="questionType-s">Seleccione Fecha</label>
-                <br>
-                <select name="selectDate" class="whole-width">
-                    <option value="text">-</option> 
-                    <option value="text">Fecha 1</option> 
-                    <option value="text">Fecha 2</option> 
-                </select>
-            </div> 
             <br>
-            <button class="wapix-btn-dark-blue">
+            <button (click)="getResultByWapixId()" class="wapix-btn-dark-blue">
                 <fa-icon [icon]="faSearchPlus"></fa-icon>
             </button>
         </div>
