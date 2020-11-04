@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { WapixService } from 'src/app/globals/services/wapix.service';
+import { Router } from '@angular/router';
+import { faSleigh } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from 'src/app/globals/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +13,9 @@ export class LoginComponent implements OnInit {
 
   loginForm:FormGroup;
   submitted = false;
+  logged = false;
 
-  constructor(private formBuilder:FormBuilder, private wapixService:WapixService) { }
+  constructor(private formBuilder:FormBuilder, private userService:UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -32,14 +35,17 @@ export class LoginComponent implements OnInit {
 
     if(this.loginForm.valid) {
 
-      this.wapixService.loginUser(this.loginForm.value)
+      this.userService.loginUser(this.loginForm.value)
       .then( data => {
+        this.logged = true;
         console.log(data);
-        alert("El usuario inicio sesión");
+        console.log("El usuario inicio sesión");
+        this.router.navigate(['../my-wapix']);
       })
       .catch( err => {
-        console.error(err);
-        alert("Sucedió un error a la hora de iniciar sesión.");
+        this.logged = false;
+        //console.error(err);
+        console.log("Sucedió un error a la hora de iniciar sesión.");
       })
       //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value))
     } else {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { WapixService } from 'src/app/globals/services/wapix.service';
+import { UserService } from 'src/app/globals/services/user.service';
 import { MustMatch } from 'src/app/globals/validators/password-match.validator';
 
 @Component({
@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private wapixService:WapixService) { }
+  constructor(private formBuilder: FormBuilder, private userService:UserService) { }
 
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
       if(this.registerForm.valid) {
 
-        this.wapixService.createUser(this.registerForm.value)
+        this.userService.createUser(this.registerForm.value)
         .then( data => {
           console.log(data);
           alert("El usuario fue creado");

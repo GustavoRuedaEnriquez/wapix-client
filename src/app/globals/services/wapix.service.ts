@@ -10,18 +10,6 @@ export class WapixService {
 
   constructor(private httpClient:HttpClient) { }
 
-  createUser(user:any):Promise<any> {
-    let url:string = environment.apiUrl + `user`;
-
-    return this.httpClient.post(url,user).toPromise();
-  }
-
-  loginUser(user:any):Promise<any> {
-    let url:string = environment.apiUrl + `login`;
-
-    return this.httpClient.post(url,user).toPromise();
-  }
-
   getWapixFromId(id:string, token:string):Promise<any> {
     let url:string = environment.apiUrl + `wapix/${id}`;
     let requestHeaders = {
