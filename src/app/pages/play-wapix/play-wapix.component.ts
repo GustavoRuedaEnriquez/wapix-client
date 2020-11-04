@@ -1,26 +1,36 @@
+/* Font Awesome icons */
+import { faGamepad, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
+
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
-import { WapixService } from '../../globals/services/wapix.service'
+import { WapixService } from '../../globals/services/wapix.service';
 
 import { environment } from '../../../environments/environment';
 
+
 @Component({
-  selector: 'app-edit-wapix',
-  templateUrl: './edit-wapix.component.html',
-  styleUrls: ['./edit-wapix.component.scss']
+  selector: 'app-play-wapix',
+  templateUrl: './play-wapix.component.html',
+  styleUrls: ['./play-wapix.component.scss']
 })
-export class EditWapixComponent implements OnInit {
+export class PlayWapixComponent implements OnInit {
+
+  faGamepad = faGamepad;
+  faDoorOpen = faDoorOpen;
+
   isLoading:boolean = true;
   wapixId:string;
   wapixObject:any = {}
+  wapixCode:string;
+  
 
-  constructor(private wapixService:WapixService, private activatedRoute:ActivatedRoute) {
+  constructor(private activatedRoute:ActivatedRoute, private wapixService:WapixService) {
     this.activatedRoute.params.subscribe( params => {
       this.wapixId = params.id;
     })
-  }
+   }
 
   ngOnInit(): void {
     /*
@@ -30,27 +40,18 @@ export class EditWapixComponent implements OnInit {
     this.wapixService.getWapixFromId(this.wapixId, environment.token)
       .then( data => {
         this.wapixObject = data.wapix[0];
+        this.wapixCode = this.wapixObject.code;
         this.isLoading = false;
       })
       .catch( err => {
         console.error(err);
         alert("Sucedió un error a la hora de cargar el wapix.");
-      })
-  }
-
-  updateWapix(wapix:any):void {
-    this.wapixService.updateWapix(this.wapixId, wapix, environment.token)
-      .then( data => {
-        alert("Wapix modificado.");
-      })
-      .catch( err => {
-        console.error(err);
-        alert("Sucedió un error a la hora de modificar el wapix.");
       }
     );
   }
 
   exitClick():void {
-    console.log("Me salí, debo de actualizar el availability");
+    console.log("me salí");
   }
+
 }

@@ -1,0 +1,34 @@
+div.body-div {
+  height: 90vh;
+  width: 100%;
+  text-align: center;
+  background: #077C9A;
+  animation: mymove 5s infinite;
+}
+
+div.container-div {
+  position: absolute;
+  height: 210px;
+  top : calc(50% - 105px);
+  left : calc(50% - 70px);
+  color: white;
+}
+  
+@keyframes mymove {
+  0% {background-color: #077C9A;}
+  25% {background-color: #2daccc;}
+  50% {background-color: #31ccd1;}
+  75% {background-color: #2daccc;}
+  100% {background-color: #077C9A;}
+}
+
+input {
+  text-align: center;
+  width: 140px;
+  font-size: 1.5em;
+}
+
+.btn-guest {
+  width: 140px;
+  font-size: 1.5em;
+}
