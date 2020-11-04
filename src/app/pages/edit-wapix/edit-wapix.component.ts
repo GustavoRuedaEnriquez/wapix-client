@@ -46,6 +46,11 @@ export class EditWapixComponent implements OnInit {
       .catch( err => {
         console.error(err);
         alert("Sucedió un error a la hora de modificar el wapix.");
-      });
+      }
+    );
+  }
+
+  exitClick():void {
+    console.log("Me salí, debo de actualizar el availability");
   }
 }

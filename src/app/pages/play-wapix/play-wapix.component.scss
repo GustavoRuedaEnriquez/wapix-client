@@ -1,22 +1,41 @@
-/* div */
-.center {
-    background-color: #26acce;
-    border-radius: 5px;
-    color: white;
+/* DIV */
+.center{
     margin-left: 15%;
     margin-right: 15%;
 }
 
-div.left {
+/* PIN DETAILS */
+#pin-div {
     display: inline-block;
-    color: white;
+}
+#pin-div h3 {
+    font-size: 3em;
+    font-style: italic;
+    font-weight: bold;
+}
+#pin-div h4 {
+    font-size: 2em;
 }
 
-div.right {
+/* PLAYER QUANTITY DETAILS */
+#players-num-div {
+    margin-top: 30px;
     float: right;
-    color: white;
+    text-align: center;
+}
+#players-num-div h4{
+    font-size: 1.7em;
 }
 
+/* PLAYERS USERNAMES CONTAINER */
+.players-container {
+    background-color: #26acce;
+    border-radius: 5px;
+    color: white;
+}
+#players-container {
+    height: 350px;
+}
 
 /* other components */
 
@@ -31,7 +50,7 @@ ul {
         padding-top: 20px;
         padding-right: 40px;
         font-weight: 800;
-        font-size: 25px;
+        font-size: 17px;
     }
 }
 
@@ -43,11 +62,20 @@ h4 {
     color: black;
 }
 
-.btn-play {
-    position: absolute;
-    transform: translateY(-50%);
-    margin-top: 30px;
-    left: 45%;
-    padding: 10px;
-    
+.btn {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.wapix-fa-icon {
+    font-size: 1em;
+    margin: 0;
 }
