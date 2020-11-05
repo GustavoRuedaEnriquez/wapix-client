@@ -9,8 +9,9 @@ import { MustMatch } from 'src/app/globals/validators/password-match.validator';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
   registerForm: FormGroup;
-  submitted = false;
+  submitted:boolean = false;
 
   constructor(private formBuilder: FormBuilder, private userService:UserService) { }
 
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
-  onSubmit() {
+  userRegister():void {
       this.submitted = true;
 
       if(this.registerForm.valid) {
@@ -36,17 +37,16 @@ export class RegisterComponent implements OnInit {
         this.userService.createUser(this.registerForm.value)
         .then( data => {
           console.log(data);
-          alert("El usuario fue creado");
+          //alert("El usuario fue creado");
         })
         .catch( err => {
           console.error(err);
-          alert("Sucedió un error a la hora de crear el usuario.");
+          //alert("Sucedió un error a la hora de crear el usuario.");
         })
           //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
       } else {
         // stop here if form is invalid
         console.log("Faltan datos");
-        return;
       }
   }
 }

@@ -1,5 +1,6 @@
-input.ng-touched.ng-invalid {
-    border: solid 1px red;
+#title {
+    float: left;
+    color: #077C9A;
 }
 
 #title {
@@ -11,13 +12,18 @@ label {
     color: white;
 }
 
-a {
-    color: #DBA824;
-    font-size: large;
+input {
+    border-radius: 10px;
+    width: auto;
 }
 
-input {
-    border-radius: 210px;
+.container-center {
+    padding-left: 150px;
+    padding-right: 125px;
+}
+
+.card-size {
+    width: 500px;
 }
 
 .card {
@@ -35,4 +41,8 @@ input {
 
 .padding {
     padding: 3rem !important
+}
+
+.textoD {
+   text-align: right;
 }

@@ -1,10 +1,5 @@
 #title {
     float: left;
-    color: #077C9A;
-}
-
-#title {
-    float: left;
     color: white;
 }
 
@@ -14,6 +9,16 @@ label {
 
 input {
     border-radius: 10px;
+    width: auto;
+}
+
+.container-center {
+    padding-left: 150px;
+    padding-right: 125px;
+}
+
+.card-size {
+    width: 500px;
 }
 
 .card {
@@ -32,3 +37,4 @@ input {
 .padding {
     padding: 3rem !important
 }
+

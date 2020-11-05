@@ -7,6 +7,10 @@ body {
     background-color: #f9f9fa
 }
 
+.first-div {
+    padding-left: 40px;
+}
+
 .padding {
     padding: 3rem !important
 }
@@ -16,7 +20,7 @@ body {
 }
 
 .card {
-    border-radius: 5px;
+    border-radius: 10px;
     -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     border: none;
@@ -33,7 +37,7 @@ body {
 }
 
 .user-card-full .user-profile {
-    border-radius: 5px 0 0 5px
+    border-radius: 10px 0 0 10px
 }
 
 .bg-c-lite-green {
@@ -137,3 +141,24 @@ h6 {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out
 }
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #077C9A;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

@@ -3,57 +3,58 @@
     <div class="text-left">
         <button class="btn wapix-btn-light-blue" routerLink="../login">Atrás</button>
     </div>
+    <br>
+    <br>
     <div class="container">
       <div class="row container d-flex justify-content-center">
-        <div class="col-xl-6 col-md-12">
+        <div class="card-size">
           <div class="card user-card-full">
             <div class="row">
-              <div class="col-md-6 offset-md-3">
-                  <br>
+              <div class="container container-center">
                 <div id="first-div">
                   <h1 id="title">Registro</h1>
                 </div>
                 <br>
                 <br>
                 <br>
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="registerForm" (ngSubmit)="userRegister()">
                   <div class="form-group">
                     <label>Nombre de usuario</label>
-                    <input type="text" formControlName="username" class="form-control"
+                    <input type="text" name="El pepe" formControlName="username" class="form-control"
                       [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                      <div *ngIf="f.username.errors.required">Username is required</div>
+                      <div *ngIf="f.username.errors.required">El nombre de usuario es requerido</div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Email</label>
+                    <label>Correo</label>
                     <input type="text" formControlName="email" class="form-control"
                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                      <div *ngIf="f.email.errors.required">Email is required</div>
-                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                      <div *ngIf="f.email.errors.required">Correo no valido</div>
+                      <div *ngIf="f.email.errors.email">El correo electronico debe ser correcto</div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Password</label>
+                    <label>Contraseña</label>
                     <input type="password" formControlName="password" class="form-control"
                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                      <div *ngIf="f.password.errors.required">Password is required</div>
-                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                      <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                      <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres</div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Confirm Password</label>
+                    <label>Comfirmar la Contraseña</label>
                     <input type="password" formControlName="confirmPassword" class="form-control"
                       [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
                     <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-                      <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
-                      <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                      <div *ngIf="f.confirmPassword.errors.required">Comfirmar la contraseña es requerido</div>
+                      <div *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas de coincidir</div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <button class="btn wapix-btn-yellow">Register</button>
+                    <button class="btn wapix-btn-yellow">Registrar</button>
                   </div>
                 </form>
               </div>
