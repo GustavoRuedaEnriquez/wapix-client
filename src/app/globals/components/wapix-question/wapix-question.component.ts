@@ -38,18 +38,17 @@ export class WapixQuestionComponent implements OnInit {
 
   constructor(private wapixService:WapixService, private activatedRoute:ActivatedRoute) { 
     this.activatedRoute.params.subscribe( params => {
+      this.isLoaded = false;
+      this.nextQuestionReady = false;
       this.wapixId = params.id;
       this.questionId = params.questionId;
       this.nextQuestionId = `${parseInt(this.questionId) + 1}`;
-    })
-  }
 
-  ngOnInit(): void {
-    /*
+      /*
       Obtain the token and from the session,
       for now, it is hardcoded.
-    */
-    this.wapixService.getQuestionFromWapix(this.wapixId, this.questionId, environment.token)
+      */
+      this.wapixService.getQuestionFromWapix(this.wapixId, this.questionId, environment.token)
       .then( data => {
         this.questionText = data.question.questionText;
         this.questionPoints = data.question.questionPoints;
@@ -60,7 +59,7 @@ export class WapixQuestionComponent implements OnInit {
         this.secondsRounded = this.seconds;
         this.isLoaded = true;
         this.timebar = document.getElementById("time-bar-element");
-        
+
         this.interval = setInterval(() => {
           if(this.secondsLeft > 0) {
             this.timebar.style.width = `${(100 * this.secondsLeft) / this.seconds}%`;
@@ -74,15 +73,17 @@ export class WapixQuestionComponent implements OnInit {
           }
         }, 10);
 
-      })
+      });
+
+    })
+  }
+
+  ngOnInit(): void {
+    
   }
 
   clearInterval():void {
     clearInterval(this.interval);
-  }
-
-  nextQuestion() {
-    window.history.replaceState({}, '',`/my-wapix/play/${this.wapixId}/${this.nextQuestionId}`);
   }
 
 }
