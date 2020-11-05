@@ -34,6 +34,15 @@ export class WapixService {
     return this.httpClient.get(url,{ headers : requestHeaders }).toPromise();
   }
 
+  getQuestionFromWapix(wapixId:string, question:string, token:string):Promise<any> {
+    let url:string = environment.apiUrl + `wapix/${wapixId}/${question}`;
+    console.log(url)
+    let requestHeaders = {
+      'Authorization' : `${token}`
+    }
+    return this.httpClient.get(url,{ headers : requestHeaders }).toPromise();
+  }
+
   updateWapix(id:string, wapix:any, token:string):Promise<any> {
     let url:string = environment.apiUrl + `wapix/${id}`;
     let requestHeaders = {

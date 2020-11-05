@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'my-wapix/:id', component : EditWapixComponent },
   { path: 'report', component : ReportWapixComponent },
   { path: 'guest', component : GuestPlayComponent },
-  { path: 'question', component : WapixQuestionComponent }
+  { path: 'my-wapix/play/:id/question/:questionId', component : WapixQuestionComponent }
 ];
 
 @NgModule({

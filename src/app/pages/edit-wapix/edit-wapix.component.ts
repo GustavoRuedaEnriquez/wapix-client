@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
-import { WapixService } from '../../globals/services/wapix.service'
+import { WapixService } from '../../globals/services/wapix.service';
 
 import { environment } from '../../../environments/environment';
 

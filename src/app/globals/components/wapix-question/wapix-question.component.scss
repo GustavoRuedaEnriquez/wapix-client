@@ -9,18 +9,14 @@
 .left-btn {
     position: absolute;
     left: 0px;
-    width: 40px;
-    height: 40px;
+    height: 45px;
     text-align: center;
-    border-radius: 100%;;
 }
 .right-btn {
     position: absolute;
     right: 0px;
-    width: 40px;
-    height: 40px;
+    height: 45px;
     text-align: center;
-    border-radius: 100%;;
 }
 .question-text {
     margin: 0 5%;
@@ -121,4 +117,11 @@
 }
 .answer-container div:nth-of-type(4) {
     background-color: #8B791E;
+}
+
+
+
+
+.btn {
+    font-size: 1.2em;
 }

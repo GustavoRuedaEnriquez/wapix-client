@@ -73,8 +73,8 @@ export class WapixFormComponent implements OnInit {
     return this.fb.group({
       questionText : ['', Validators.required],
       questionType : ['text', Validators.required],
-      questionTime : ['10', Validators.required],
-      maxPoints : ['100', Validators.required],
+      questionTime : [10, Validators.required],
+      maxPoints : [100, Validators.required],
       gameMode : ['normal', Validators.required],
       answers: this.fb.array([
         this.addBlankAnswerFormGroup()
@@ -86,8 +86,8 @@ export class WapixFormComponent implements OnInit {
     return this.fb.group({
       questionText : ['', Validators.required],
       questionType : ['text', Validators.required],
-      questionTime : ['10', Validators.required],
-      maxPoints : ['100', Validators.required],
+      questionTime : [10, Validators.required],
+      maxPoints : [100, Validators.required],
       gameMode : ['normal', Validators.required],
       answers: this.fb.array([])
     })

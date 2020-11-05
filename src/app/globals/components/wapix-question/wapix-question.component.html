@@ -1,15 +1,15 @@
 <div class="body-div">
     <div class="header-part-div">
-        <button class="left-btn btn wapix-btn-red"></button>
-        <button class="right-btn btn wapix-btn-light-blue"></button>
-        <h1 class="question-text">Pregunta</h1>
+        <a routerLink="../.." class="left-btn btn wapix-btn-red" type="button" (click)="clearInterval()"><fa-icon [icon]="faTimesCircle"></fa-icon> Salir</a>
+        <a *ngIf="nextQuestionReady" class="right-btn btn wapix-btn-light-blue" type="button" (click)="nextQuestion()">Sig. <fa-icon [icon]="faArrowCircleRight"></fa-icon></a>
+        <h1 class="question-text">{{questionText}}</h1>
     </div>
 
     <div class="time-container-div">
         <div class=time-text-div>
-            <p style="margin-top:8px;">999</p>
+            <p style="margin-top:8px;">{{secondsRounded}}</p>
         </div>
-        <div class="time-bar">
+        <div id="time-bar-element" class="time-bar">
         </div>
     </div>
 
@@ -22,10 +22,7 @@
     </div>
 
     <div class="answer-container">
-        <div class="answer-wapix border"><p>Respuesta 1</p></div>
-        <div class="answer-wapix border"><p>Respuesta 2</p></div>
-        <div class="answer-wapix border"><p>Respuesta 3</p></div>
-        <div class="answer-wapix border"><p>Respuesta 4</p></div>
+        <div *ngFor="let answer of answers" class="answer-wapix border" isCorrect="{{answer.isCorrect}}"><p>{{answer.answerText}}</p></div>
     </div>
 
 
