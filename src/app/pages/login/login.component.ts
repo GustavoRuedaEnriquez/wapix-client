@@ -29,15 +29,11 @@ export class LoginComponent implements OnInit {
 
   userLogin(): void {
     this.submitted = true;
-    console.log(this.loginForm.value);
-
-    // Email for testing = gare_98@hotmail.com
 
     if (this.loginForm.valid) {
-
+      this.logged = true;
       this.userService.loginUser(this.loginForm.value)
         .then(data => {
-          this.logged = true;
           console.log(data);
           console.log("El usuario inicio sesión");
           this.router.navigate(['../my-wapix']);

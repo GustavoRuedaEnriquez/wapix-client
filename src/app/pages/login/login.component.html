@@ -1,3 +1,5 @@
+<app-main-navigation-bar></app-main-navigation-bar>
+
 <div class="body-div">
   <div class="padding">
     <div class="textoD">
@@ -44,7 +46,7 @@
             </div>
           </div>
           <!-- div to show if you USER NOT FOUND OR ERROR -->
-          <div *ngIf="this.submitted && !this.logged" class="text-center">
+          <div *ngIf="submitted && !logged" class="text-center">
             <h2>¡Hubo un error, la contraseña o el correo eran incorrectos!</h2>
           </div>
         </div>

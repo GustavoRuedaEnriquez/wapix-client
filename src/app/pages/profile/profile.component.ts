@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { empty } from 'rxjs';
 import { UserService } from 'src/app/globals/services/user.service';
 import { MustMatch } from 'src/app/globals/validators/password-match.validator';
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
   user: any;
   name:String;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.editForm = this.formBuilder.group({
@@ -40,7 +41,7 @@ export class ProfileComponent implements OnInit {
     Obtain the token and the email from the session,
     for now, it is hardcoded.
     */
-   let email: string = 'gare_98@hotmail.com';
+   let email: string = 'stompercito@hotmail.com';
 
    let token: string = environment.token;
 
@@ -51,6 +52,7 @@ export class ProfileComponent implements OnInit {
      })
      .catch(err => {
        console.error(err);
+       this.router.navigate(['../login']);
      });
   }
 

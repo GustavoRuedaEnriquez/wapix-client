@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
         })
         .catch( err => {
           console.error(err);
-          //alert("Sucedió un error a la hora de crear el usuario.");
+          alert("Sucedió un error a la hora de crear el usuario.");
         })
           //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
       } else {
