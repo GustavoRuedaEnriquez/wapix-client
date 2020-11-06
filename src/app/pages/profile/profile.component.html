@@ -1,0 +1,127 @@
+<div class="body-div">
+
+  <br>
+
+  <!-- header -->
+  <div class="row first-div">
+    <h1 id="title">Mi Perfil</h1>
+  </div>
+
+  <ng-template [ngIf]="isLoading" [ngIfElse]="loaded">
+    <div class="loader container"></div>
+  </ng-template>
+
+  <ng-template #loaded>
+    <div class="page-content page-container" id="page-content">
+      <div class="padding">
+        <div class="row">
+          <div class="container">
+            <div class="card user-card-full">
+              <div class="row m-l-0 m-r-0">
+                <div class="col-sm-4 bg-c-lite-green user-profile">
+                  <div class="card-block text-center text-white">
+                    <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png"
+                        class="img-radius" alt="User-Profile-Image"> </div>
+                    <h6 class="f-w-600">{{user.username}}</h6>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <ng-template [ngIf]="edit" [ngIfElse]="normal">
+                    <div class="card-block">
+                      <form [formGroup]="editForm" (ngSubmit)="userEdit()">
+                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h6>
+                        <div class="row">
+                          <div class="col-sm-10">
+                            <p class="m-b-10 f-w-600">Correo</p>
+                            <h6 class="text-muted f-w-400">{{user.email}}</h6>
+                          </div>
+                          <div class="col-sm-10">
+                            <div class="form-group">
+                              <label>Nombre de usuario</label>
+                              <input type="text" formControlName="username" ng-pattern="/[a-zA-Z0-9^ ]/" placeholder="{{user.username}}" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                <div *ngIf="f.username.errors.required">El nombre de usuario es requerido</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Escribe la nueva contraseña</h6>
+                        <div class="row">
+                          <div class="col-sm-10">
+                            <div class="form-group">
+                              <label>Contraseña</label>
+                              <input type="password" formControlName="password" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                                <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-10">
+                            <div class="form-group">
+                              <label>Comfirmar la Contraseña</label>
+                              <input type="password" formControlName="confirmPassword" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                              <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                <div *ngIf="f.confirmPassword.errors.required">Comfirmar la contraseña es requerido
+                                </div>
+                                <div *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas de coincidir</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-10">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                  <button class="btn wapix-btn-yellow">Guardar</button>
+                                </div>
+                              </div>
+                              <div class="col-sm-6">
+                                <button class="btn wapix-btn-red" (click)="editBtn()">Cancelar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </ng-template>
+
+                  <ng-template #normal>
+                    <div class="card-block">
+                      <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h6>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p class="m-b-10 f-w-600">Correo</p>
+                          <h6 class="text-muted f-w-400">{{user.email}}</h6>
+                        </div>
+                        <div class="col-sm-6">
+                          <p class="m-b-10 f-w-600">Nombre</p>
+                          <h6 class="f-w-400">{{user.username}}</h6>
+                        </div>
+                      </div>
+                      <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Ajustes</h6>
+                      <div class="row">
+                        <div class="col-sm-10">
+                          <p class="m-b-10 f-w-600">Editar datos de usuario</p>
+                          <button class="btn wapix-btn-yellow" (click)="editBtn()">Editar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div *ngIf="this.submitted && this.logged == false" class="text-center">
+    <h2>¡Debes llenar el parametro a cambiar antes de guardar la información!</h2>
+  </div>
+
+
+</div>

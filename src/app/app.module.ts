@@ -21,6 +21,9 @@ import { EditWapixComponent } from './pages/edit-wapix/edit-wapix.component';
 import { WapixQuestionComponent } from './globals/components/wapix-question/wapix-question.component';
 import { ReportWapixComponent } from './pages/report-wapix/report-wapix.component';
 import { GuestPlayComponent } from './pages/guest-play/guest-play.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { GuestPlayComponent } from './pages/guest-play/guest-play.component';
     EditWapixComponent,
     PlayWapixComponent,
     WapixQuestionComponent,
-    GuestPlayComponent
+    GuestPlayComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
