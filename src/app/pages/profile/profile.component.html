@@ -1,18 +1,14 @@
 <div class="body-div">
 
-  <br>
+  <h1 id="title">Mi Perfil</h1>
+  
 
-  <!-- header -->
-  <div class="row first-div">
-    <h1 id="title">Mi Perfil</h1>
-  </div>
-
-  <ng-template [ngIf]="isLoading" [ngIfElse]="loaded">
+  <ng-template class="text-center" [ngIf]="isLoading" [ngIfElse]="loaded">
     <div class="loader container"></div>
   </ng-template>
 
   <ng-template #loaded>
-    <div class="page-content page-container" id="page-content">
+    <div class="page-content page-container text-center" id="page-content">
       <div class="padding">
         <div class="row">
           <div class="container">
@@ -62,13 +58,13 @@
                           </div>
                           <div class="col-sm-10">
                             <div class="form-group">
-                              <label>Comfirmar la Contraseña</label>
+                              <label>Confirmar contraseña</label>
                               <input type="password" formControlName="confirmPassword" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
                               <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-                                <div *ngIf="f.confirmPassword.errors.required">Comfirmar la contraseña es requerido
+                                <div *ngIf="f.confirmPassword.errors.required">Confirme contraseña
                                 </div>
-                                <div *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas de coincidir</div>
+                                <div *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas deben coincidir</div>
                               </div>
                             </div>
                           </div>
@@ -93,20 +89,20 @@
                     <div class="card-block">
                       <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Información</h6>
                       <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                           <p class="m-b-10 f-w-600">Correo</p>
-                          <h6 class="text-muted f-w-400">{{user.email}}</h6>
-                        </div>
-                        <div class="col-sm-6">
-                          <p class="m-b-10 f-w-600">Nombre</p>
-                          <h6 class="f-w-400">{{user.username}}</h6>
+                          <h6 class="text-muted f-w-400 userdata">{{user.email}}</h6>
                         </div>
                       </div>
-                      <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Ajustes</h6>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <p class="m-b-10 f-w-600">Nombre de usuario</p>
+                          <h6 class="f-w-400 userdata">{{user.username}}</h6>
+                        </div>
+                      </div>
                       <div class="row">
                         <div class="col-sm-10">
-                          <p class="m-b-10 f-w-600">Editar datos de usuario</p>
-                          <button class="btn wapix-btn-yellow" (click)="editBtn()">Editar</button>
+                          <button class="btn wapix-btn-yellow" (click)="editBtn()">Editar datos</button>
                         </div>
                       </div>
                     </div>
