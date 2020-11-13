@@ -1,3 +1,8 @@
+import { faUser,
+        faEnvelope,
+        faLock,
+        faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/globals/services/user.service';
@@ -12,6 +17,11 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted:boolean = false;
+
+  faUser = faUser;
+  faEnvelope = faEnvelope;
+  faLock = faLock;
+  faChevronLeft = faChevronLeft;
 
   constructor(private formBuilder: FormBuilder, private userService:UserService) { }
 
@@ -37,16 +47,12 @@ export class RegisterComponent implements OnInit {
         this.userService.createUser(this.registerForm.value)
         .then( data => {
           console.log(data);
-          //alert("El usuario fue creado");
+          alert("El usuario fue creado");
         })
         .catch( err => {
           console.error(err);
           alert("Sucedió un error a la hora de crear el usuario.");
         })
-          //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-      } else {
-        // stop here if form is invalid
-        console.log("Faltan datos");
       }
   }
 }

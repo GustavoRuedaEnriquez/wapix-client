@@ -1,7 +1,79 @@
 <app-main-navigation-bar></app-main-navigation-bar>
 
 <div class="body-div">
-  <div class="padding">
+  <div class="centered">
+    <h1>Registrarse</h1>
+
+    <div id="container-center">
+      <form [formGroup]="registerForm" (ngSubmit)="userRegister()">
+        <div class="form-group">
+          <label><fa-icon class="wapix-fa-icon edit-fa-icon" [icon]="faUser"></fa-icon>Nombre de usuario</label>
+          <input type="text" name="El pepe" formControlName="username" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <span *ngIf="f.username.errors.required">Nombre de usuario es requerido</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><fa-icon class="wapix-fa-icon edit-fa-icon" [icon]="faEnvelope"></fa-icon>Correo</label>
+          <input type="text" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <span *ngIf="f.email.errors.required">Email requerido</span>
+            <span *ngIf="f.email.errors.email">El email debe ser correcto</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><fa-icon class="wapix-fa-icon edit-fa-icon" [icon]="faLock"></fa-icon>Contraseña</label>
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <span *ngIf="f.password.errors.required">Contraseña es requerida</span>
+            <span *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><fa-icon class="wapix-fa-icon edit-fa-icon" [icon]="faLock"></fa-icon>Confirmar contraseña</label>
+          <input type="password" formControlName="confirmPassword" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+            <span *ngIf="f.confirmPassword.errors.required">Confirme contraseña</span>
+            <span *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas deben coincidir</span>
+          </div>
+        </div>
+        <div id="buttons-div"  class="form-group">
+          <button class="btn wapix-btn-yellow">Registrar</button>
+          <button id="back-btn" type="button" class="btn wapix-btn-red" routerLink="../login"><fa-icon class="wapix-fa-icon" [icon]="faChevronLeft"></fa-icon>Atrás</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="padding" style="display: none;">
     <div class="text-left">
         <button class="btn wapix-btn-light-blue" routerLink="../login">Atrás</button>
     </div>
@@ -20,46 +92,7 @@
                 <br>
                 <br>
                 <br>
-                <form [formGroup]="registerForm" (ngSubmit)="userRegister()">
-                  <div class="form-group">
-                    <label>Nombre de usuario</label>
-                    <input type="text" name="El pepe" formControlName="username" class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                      <div *ngIf="f.username.errors.required">El nombre de usuario es requerido</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Correo</label>
-                    <input type="text" formControlName="email" class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                      <div *ngIf="f.email.errors.required">Correo no valido</div>
-                      <div *ngIf="f.email.errors.email">El correo electronico debe ser correcto</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" formControlName="password" class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                      <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
-                      <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Comfirmar la Contraseña</label>
-                    <input type="password" formControlName="confirmPassword" class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-                      <div *ngIf="f.confirmPassword.errors.required">Comfirmar la contraseña es requerido</div>
-                      <div *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas de coincidir</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <button class="btn wapix-btn-yellow">Registrar</button>
-                  </div>
-                </form>
+                
               </div>
             </div>
           </div>
@@ -67,4 +100,20 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>

@@ -1,40 +1,82 @@
-#title {
-    float: left;
-    color: white;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h1 {
+    color: #077C9A;
+}
+
+.centered {
+    position: absolute;
+    top: 80px;
+    left: calc(50% - 150px);
+    display: inline-block;
+    margin: auto;
+    text-align: center;
+}
+
+#container-center {
+    width: 300px;
+    height: auto;
+    padding: 20px 20px 20px 20px;
+    background-color: #40A8C4;
+    border-radius: 5px;
+    text-align: left;
 }
 
 label {
+    font-weight: bold;
     color: white;
 }
 
 input {
-    border-radius: 10px;
-    width: auto;
+    border-radius: 5px;
+    width: 260px;
 }
 
-.container-center {
-    padding-left: 150px;
-    padding-right: 125px;
+.invalid-feedback {
+    color: #610202;
+    font-weight: bold;
 }
 
-.card-size {
-    width: 500px;
+#buttons-div {
+    display: inline-block;
 }
 
-.card {
-    border-radius:10px;
-    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
-    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
-    border: none;
-    margin-bottom: 30px;
-    background-color: #077C9A ;
+#back-btn {
+    position: absolute;
+    right: 20px;
 }
 
-.user-card-full {
-    overflow: hidden
+.wapix-fa-icon {
+    margin-right: 10px;
 }
-
-.padding {
-    padding: 3rem !important
-}
-
