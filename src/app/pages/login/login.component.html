@@ -1,56 +1,34 @@
 <app-main-navigation-bar></app-main-navigation-bar>
 
-<div class="body-div">
-  <div class="padding">
-    <div class="textoD">
-      <button class="btn wapix-btn-light-blue" routerLink="../register">Nuevo Usuario</button>
-    </div>
-    <br>
-    <br>
-    <div class="container">
-      <div class="row container d-flex justify-content-center">
-        <div class="card-size">
-          <div class="card user-card-full">
-            <div class="row">
-              <div class="container container-center">
-                <br>
-                <div id="first-div">
-                  <h1 id="title">Wapix</h1>
-                </div>
-                <br>
-                <br>
-                <br>
-                <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
-                  <div class="form-group">
-                    <label>Correo</label>
-                    <input type="text" formControlName="email" class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.email.errors || this.submitted && !this.logged}" />
-                    <div *ngIf="submitted && f.email.errors " class="invalid-feedback">
-                      <div *ngIf="f.email.errors.required">Email is required</div>
-                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" formControlName="password" class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.password.errors || this.submitted && !this.logged}" />
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                      <div *ngIf="f.password.errors.required">Password is required</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <button class="btn wapix-btn-yellow">Iniciar Sesión</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <!-- div to show if you USER NOT FOUND OR ERROR -->
-          <div *ngIf="submitted && !logged" class="text-center">
-            <h2>¡Hubo un error, la contraseña o el correo eran incorrectos!</h2>
+<div class="body-div" style="position: relative;">
+  <div class="centered">
+    <h1>Iniciar sesión</h1>
+
+    <div id="container-center">
+      <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+        <div class="form-group">
+          <label>Correo</label>
+          <input type="text" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors || this.submitted && !this.logged}" />
+          <div *ngIf="submitted && f.email.errors " class="invalid-feedback">
+            <span *ngIf="f.email.errors.required">El email es requerido</span>
+            <span *ngIf="f.email.errors.email">Email debe de ser válido</span>
           </div>
         </div>
-      </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors || this.submitted && !this.logged}" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <span *ngIf="f.password.errors.required">Contraseña requerida</span>
+          </div>
+          <div id="buttons-div" class="form-group">
+            <button id="login-btn" type="submit" class="btn wapix-btn-yellow">Ingresar</button>
+            <button id="register-btn" type="button" class="btn wapix-btn-dark-blue" routerLink="../register">Registrarse</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
+
 </div>

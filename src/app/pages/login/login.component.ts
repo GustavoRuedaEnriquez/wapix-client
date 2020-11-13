@@ -35,18 +35,13 @@ export class LoginComponent implements OnInit {
       this.userService.loginUser(this.loginForm.value)
         .then(data => {
           console.log(data);
-          console.log("El usuario inicio sesión");
           this.router.navigate(['../my-wapix']);
         })
         .catch(err => {
           this.logged = false;
-          //console.error(err);
-          console.log("Sucedió un error a la hora de iniciar sesión.");
+          alert("No se pudo iniciar sesión, verifique sus datos o inténtelo más tarde.");
         })
-      //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value))
-    } else {
-      console.log("Faltan datos");
-    }
+    } 
   }
 
 }
