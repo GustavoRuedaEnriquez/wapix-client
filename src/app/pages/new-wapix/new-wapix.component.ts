@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 /* Required components */
 import { WapixService } from '../../globals/services/wapix.service'
-
-import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/globals/services/auth.service';
 
 @Component({
   selector: 'app-new-wapix',
@@ -14,9 +13,8 @@ import { environment } from '../../../environments/environment';
 export class NewWapixComponent implements OnInit {
 
   wapixNewObject:any = {}
-  
 
-  constructor(private wapixService:WapixService) {  }
+  constructor(private wapixService:WapixService, private authService: AuthService) {  }
 
   ngOnInit(): void {  }
 
@@ -25,10 +23,11 @@ export class NewWapixComponent implements OnInit {
       Obtain the token and the email from the session,
       for now, it is hardcoded.
     */
-    let email:string = 'gare_98@hotmail.com';
+   let email:string = this.authService.getEmail(); 
+   let token:string = this.authService.getToken();
     wapix.creator = email;
 
-    this.wapixService.createWapix(wapix, environment.token)
+    this.wapixService.createWapix(wapix,token)
       .then( data => {
         alert("Wapix creado.");
       })

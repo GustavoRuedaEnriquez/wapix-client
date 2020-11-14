@@ -11,19 +11,21 @@ import { WapixQuestionComponent } from './globals/components/wapix-question/wapi
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AuthGuard } from './globals/guards/auth.guard';
+import { UnAuthGuard } from './globals/guards/unauth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo : 'login', pathMatch : 'full' },
-  { path: 'my-wapix', component : ViewWapixComponent },
-  { path: 'my-wapix/new', component : NewWapixComponent },
-  { path: 'my-wapix/play/:id', component : PlayWapixComponent },
-  { path: 'my-wapix/:id', component : EditWapixComponent },
-  { path: 'report', component : ReportWapixComponent },
+  { path: '', redirectTo : 'my-wapix', pathMatch : 'full' },
+  { path: 'my-wapix', component : ViewWapixComponent, canActivate: [AuthGuard]},
+  { path: 'my-wapix/new', component : NewWapixComponent, canActivate: [AuthGuard] },
+  { path: 'my-wapix/play/:id', component : PlayWapixComponent, canActivate: [AuthGuard]},
+  { path: 'my-wapix/:id', component : EditWapixComponent, canActivate: [AuthGuard]},
+  { path: 'report', component : ReportWapixComponent, canActivate: [AuthGuard] },
   { path: 'guest', component : GuestPlayComponent },
-  { path: 'my-wapix/play/:id/question/:questionId', component : WapixQuestionComponent },
-  { path: 'login', component : LoginComponent },
-  { path: 'register', component : RegisterComponent },
-  { path: 'profile', component : ProfileComponent },
+  { path: 'my-wapix/play/:id/question/:questionId', component : WapixQuestionComponent, canActivate: [AuthGuard] },
+  { path: 'login', component : LoginComponent, canActivate: [UnAuthGuard] },
+  { path: 'register', component : RegisterComponent, canActivate: [UnAuthGuard] },
+  { path: 'profile', component : ProfileComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

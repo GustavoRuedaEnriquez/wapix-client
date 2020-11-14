@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { empty } from 'rxjs';
+import { AuthService } from 'src/app/globals/services/auth.service';
 import { UserService } from 'src/app/globals/services/user.service';
 import { MustMatch } from 'src/app/globals/validators/password-match.validator';
-import { environment } from 'src/environments/environment';
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -21,9 +19,10 @@ export class ProfileComponent implements OnInit {
   user: any;
   name:String;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
+
     this.editForm = this.formBuilder.group({
       username: ['', Validators.pattern('[(!/^\s/)]*[a-zA-Z ]*[(!/^\s/)]*') ],
       password: ['', Validators.minLength(6)],
@@ -41,9 +40,8 @@ export class ProfileComponent implements OnInit {
     Obtain the token and the email from the session,
     for now, it is hardcoded.
     */
-   let email: string = 'stompercito@hotmail.com';
-
-   let token: string = environment.token;
+   let email:string = this.authService.getEmail(); 
+   let token:string = this.authService.getToken();
 
    this.userService.getUser(email, token)
      .then(data => {
@@ -52,7 +50,6 @@ export class ProfileComponent implements OnInit {
      })
      .catch(err => {
        console.error(err);
-       this.router.navigate(['../login']);
      });
   }
 
@@ -81,7 +78,7 @@ export class ProfileComponent implements OnInit {
     for now, it is hardcoded.
     */
 
-    let token: string = environment.token;
+    let token:string = this.authService.getToken();
 
     if (this.editForm.valid && this.name && this.editForm.value.password) {
             
