@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faSleigh } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/globals/services/auth.service';
 import { UserService } from 'src/app/globals/services/user.service';
 
 @Component({
@@ -15,9 +16,13 @@ export class LoginComponent implements OnInit {
   submitted = false;
   logged = false;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    if(this.authService.isLoggedIn()) {
+      this.router.navigate(['../my-wapix']);
+    }
+
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -35,6 +40,7 @@ export class LoginComponent implements OnInit {
       this.userService.loginUser(this.loginForm.value)
         .then(data => {
           console.log(data);
+          this.authService.save(data);
           console.log("El usuario inicio sesión");
           this.router.navigate(['../my-wapix']);
         })
