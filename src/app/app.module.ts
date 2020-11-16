@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 /* Global components */
 import { NavigationBarComponent } from './globals/components/navigation-bar/navigation-bar.component';
 import { WapixFormComponent } from './globals/components/wapix-form/wapix-form.component';
-import { MainNavigationBarComponent } from './globals/components/main-navigation-bar/main-navigation-bar.component';
 
 /* Pages components */
 import { ViewWapixComponent } from './pages/view-wapix/view-wapix.component';
@@ -29,7 +28,6 @@ import { ProfileComponent } from './pages/profile/profile.component';
   declarations: [
     AppComponent,
     NavigationBarComponent,
-    MainNavigationBarComponent,
     WapixFormComponent,
     ViewWapixComponent,
     ReportWapixComponent,

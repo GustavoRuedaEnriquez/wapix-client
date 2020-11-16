@@ -21,20 +21,16 @@ export class ReportWapixComponent implements OnInit {
 
   wapixes:Array<any> = [];
   report:Array<any> = [];
-  token:string;
 
 
   constructor(private wapixService:WapixService, private reportService:ReportService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    /*
-      Obtain the token and the email from the session,
-      for now, it is hardcoded.
-    */
+    /* Obtain the token and the email from the session */
    let email:string = this.authService.getEmail();
-   this.token = this.authService.getToken();
+   let token:string = this.authService.getToken();
 
-    this.wapixService.getWapixFromUser(email, this.token)
+    this.wapixService.getWapixFromUser(email, token)
       .then( data => {
         this.wapixes = data.wapix;
       })
@@ -48,8 +44,9 @@ export class ReportWapixComponent implements OnInit {
 
     let wapix:any = document.getElementById('selectWapix');
     let id = wapix.options[wapix.selectedIndex].value;
-    
-    this.reportService.getResultByWapixId(id, this.token)
+    let token:string = this.authService.getToken();
+
+    this.reportService.getResultByWapixId(id, token)
       .then( data => {
         this.report = data.result;
         console.log('Results obtained from wapix', id);

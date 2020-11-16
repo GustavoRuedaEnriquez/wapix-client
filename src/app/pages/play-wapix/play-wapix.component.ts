@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { WapixService } from '../../globals/services/wapix.service';
 
-import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/globals/services/auth.service';
 
 
 @Component({
@@ -26,18 +26,16 @@ export class PlayWapixComponent implements OnInit {
   wapixCode:string;
   
 
-  constructor(private activatedRoute:ActivatedRoute, private wapixService:WapixService) {
+  constructor(private activatedRoute:ActivatedRoute, private wapixService:WapixService, private authService:AuthService) {
     this.activatedRoute.params.subscribe( params => {
       this.wapixId = params.id;
     })
    }
 
   ngOnInit(): void {
-    /*
-      Obtain the token and from the session,
-      for now, it is hardcoded.
-    */
-    this.wapixService.getWapixFromId(this.wapixId, environment.token)
+    /* Obtain the token and from the session */
+    let token:string = this.authService.getToken();
+    this.wapixService.getWapixFromId(this.wapixId, token)
       .then( data => {
         this.wapixObject = data.wapix[0];
         this.wapixCode = this.wapixObject.code;

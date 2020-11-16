@@ -19,10 +19,7 @@ export class NewWapixComponent implements OnInit {
   ngOnInit(): void {  }
 
   saveWapix(wapix:any):void {
-    /*
-      Obtain the token and the email from the session,
-      for now, it is hardcoded.
-    */
+    /* Obtain the token and the email from the session */
    let email:string = this.authService.getEmail(); 
    let token:string = this.authService.getToken();
     wapix.creator = email;

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { WapixService } from '../../globals/services/wapix.service';
 
-import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/globals/services/auth.service';
 
 @Component({
   selector: 'app-edit-wapix',
@@ -16,18 +16,17 @@ export class EditWapixComponent implements OnInit {
   wapixId:string;
   wapixObject:any = {}
 
-  constructor(private wapixService:WapixService, private activatedRoute:ActivatedRoute) {
+  constructor(private wapixService:WapixService, private activatedRoute:ActivatedRoute, private authService:AuthService) {
     this.activatedRoute.params.subscribe( params => {
       this.wapixId = params.id;
     })
   }
 
   ngOnInit(): void {
-    /*
-      Obtain the token and from the session,
-      for now, it is hardcoded.
-    */
-    this.wapixService.getWapixFromId(this.wapixId, environment.token)
+    /* Obtain the token and from the session. */
+    let token:string = this.authService.getToken();
+
+    this.wapixService.getWapixFromId(this.wapixId, token)
       .then( data => {
         this.wapixObject = data.wapix[0];
         this.isLoading = false;
@@ -39,7 +38,9 @@ export class EditWapixComponent implements OnInit {
   }
 
   updateWapix(wapix:any):void {
-    this.wapixService.updateWapix(this.wapixId, wapix, environment.token)
+    /* Obtain the token and from the session. */
+    let token:string = this.authService.getToken();
+    this.wapixService.updateWapix(this.wapixId, wapix, token)
       .then( data => {
         alert("Wapix modificado.");
       })

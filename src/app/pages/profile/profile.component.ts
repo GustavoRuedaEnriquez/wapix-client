@@ -36,10 +36,7 @@ export class ProfileComponent implements OnInit {
   }
   
   getUserInfo():void{
-     /*
-    Obtain the token and the email from the session,
-    for now, it is hardcoded.
-    */
+     /* Obtain the token and the email from the session */
    let email:string = this.authService.getEmail(); 
    let token:string = this.authService.getToken();
 
@@ -73,11 +70,7 @@ export class ProfileComponent implements OnInit {
       "username": this.editForm.value.username
     }
 
-    /*
-    Obtain the token and the email from the session,
-    for now, it is hardcoded.
-    */
-
+    /* Obtain the token from the session */
     let token:string = this.authService.getToken();
 
     if (this.editForm.valid && this.name && this.editForm.value.password) {

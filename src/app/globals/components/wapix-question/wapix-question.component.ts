@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { WapixService } from '../../../globals/services/wapix.service';
 
-import { environment } from '../../../../environments/environment';
+import { AuthService } from 'src/app/globals/services/auth.service';
 
 @Component({
   selector: 'app-wapix-question',
@@ -36,7 +36,7 @@ export class WapixQuestionComponent implements OnInit {
   isLoaded:boolean = false;
   nextQuestionReady:boolean = false;
 
-  constructor(private wapixService:WapixService, private activatedRoute:ActivatedRoute) { 
+  constructor(private wapixService:WapixService, private activatedRoute:ActivatedRoute, private authService:AuthService) { 
     this.activatedRoute.params.subscribe( params => {
       this.isLoaded = false;
       this.nextQuestionReady = false;
@@ -44,11 +44,10 @@ export class WapixQuestionComponent implements OnInit {
       this.questionId = params.questionId;
       this.nextQuestionId = `${parseInt(this.questionId) + 1}`;
 
-      /*
-      Obtain the token and from the session,
-      for now, it is hardcoded.
-      */
-      this.wapixService.getQuestionFromWapix(this.wapixId, this.questionId, environment.token)
+      /* Obtain the token and from the session */
+      let token:string = this.authService.getToken();
+
+      this.wapixService.getQuestionFromWapix(this.wapixId, this.questionId, token)
       .then( data => {
         this.questionText = data.question.questionText;
         this.questionPoints = data.question.questionPoints;
@@ -82,7 +81,7 @@ export class WapixQuestionComponent implements OnInit {
     
   }
 
-  clearInterval():void {
+  exitWapix():void {
     clearInterval(this.interval);
   }
 
