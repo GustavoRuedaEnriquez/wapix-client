@@ -3,29 +3,35 @@
     <h1>Iniciar sesión</h1>
 
     <div id="container-center">
-      <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
-        <div class="form-group">
-          <label>Correo</label>
-          <input type="text" formControlName="email" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors || this.submitted && !this.logged}" />
-          <div *ngIf="submitted && f.email.errors " class="invalid-feedback">
-            <span *ngIf="f.email.errors.required">El email es requerido</span>
-            <span *ngIf="f.email.errors.email">Email debe de ser válido</span>
+      <div>
+        <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+          <div class="form-group">
+            <label>Correo</label>
+            <input type="text" formControlName="email" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors || this.submitted && !this.logged}" />
+            <div *ngIf="submitted && f.email.errors " class="invalid-feedback">
+              <span *ngIf="f.email.errors.required">El email es requerido</span>
+              <span *ngIf="f.email.errors.email">Email debe de ser válido</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Contraseña</label>
-          <input type="password" formControlName="password" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.password.errors || this.submitted && !this.logged}" />
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <span *ngIf="f.password.errors.required">Contraseña requerida</span>
+          <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors || this.submitted && !this.logged}" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <span *ngIf="f.password.errors.required">Contraseña requerida</span>
+            </div>
+            <div id="buttons-div" class="form-group">
+              <button id="login-btn" type="submit" class="btn wapix-btn-yellow">Ingresar</button>
+              <button id="register-btn" type="button" class="btn wapix-btn-dark-blue" routerLink="../register">Registrarse</button>
+            </div>
           </div>
-          <div id="buttons-div" class="form-group">
-            <button id="login-btn" type="submit" class="btn wapix-btn-yellow">Ingresar</button>
-            <button id="register-btn" type="button" class="btn wapix-btn-dark-blue" routerLink="../register">Registrarse</button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
+      <br>
+      <div>
+        <button id="google-btn" type="button" class="btn wapix-btn-yellow" (click) = "googleLogin()">Google</button>
+      </div>
     </div>
   </div>
 

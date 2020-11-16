@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { faSleigh } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { UserService } from 'src/app/globals/services/user.service';
+import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -16,17 +17,27 @@ export class LoginComponent implements OnInit {
   submitted = false;
   logged = false;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private authService: AuthService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userService: UserService, 
+    private router: Router,
+    private socialAuthService: SocialAuthService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
-    if(this.authService.isLoggedIn()) {
-      this.router.navigate(['../my-wapix']);
-    }
-
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
-    })
+    });
+
+    this.socialAuthService.authState.subscribe((user) => {
+      console.log('Datos del usuario', user);
+      this.userService.googleLogin(user).then(response => {
+        console.log('Response: ',response);
+        
+      })
+    });
   }
 
   // convenience getter for easy access to form fields
@@ -49,6 +60,10 @@ export class LoginComponent implements OnInit {
           alert("No se pudo iniciar sesión, verifique sus datos o inténtelo más tarde.");
         })
     } 
+  }
+
+  googleLogin() {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID); 
   }
 
 }

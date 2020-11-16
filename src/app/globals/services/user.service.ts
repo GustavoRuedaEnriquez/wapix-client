@@ -20,6 +20,12 @@ export class UserService {
 
     return this.httpClient.post(url,user).toPromise();
   }
+  
+  googleLogin(user:any):Promise<any> {
+    let url:string = environment.apiUrl + `googleLogin`;
+
+    return this.httpClient.post(url,user).toPromise();
+  }
 
   getUser(email:string, token:string):Promise<any> {
     let url:string = environment.apiUrl + `user/${email}`;

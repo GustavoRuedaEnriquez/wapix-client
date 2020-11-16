@@ -23,7 +23,10 @@ export class RegisterComponent implements OnInit {
   faLock = faLock;
   faChevronLeft = faChevronLeft;
 
-  constructor(private formBuilder: FormBuilder, private userService:UserService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userService:UserService
+    ) { }
 
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
