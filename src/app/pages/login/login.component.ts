@@ -19,10 +19,6 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    if(this.authService.isLoggedIn()) {
-      this.router.navigate(['../my-wapix']);
-    }
-
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
