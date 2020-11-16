@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://127.0.0.1:3003/api/',
-  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDUyMzg0NzcsImV4cCI6MTYwNTMyNDg3N30.YFcpcLtu_Z7oGeDo5BwkYUKFpd-HzlcD93y6jeoOSuQ'
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDUzNzcwMzQsImV4cCI6MTYwNTQ2MzQzNH0.Rh7eZQcvphe9rakgr0a6OCgJX7JNNbZoH3BmDt4Qo34',
+  clientId: '763702996895-d1j6oq8bqf4vrpjn4kpmvv18hl8g6tu6.apps.googleusercontent.com'
 
 };
 
