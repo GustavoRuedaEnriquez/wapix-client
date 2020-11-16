@@ -4,8 +4,8 @@ import { faSearchPlus, faSearch, faSurprise } from '@fortawesome/free-solid-svg-
 /* imports */
 import { Component, OnInit } from '@angular/core';
 import { WapixService } from 'src/app/globals/services/wapix.service';
-import { environment } from '../../../environments/environment';
 import { ReportService } from 'src/app/globals/services/report.service';
+import { AuthService } from 'src/app/globals/services/auth.service';
 
 
 @Component({
@@ -21,20 +21,20 @@ export class ReportWapixComponent implements OnInit {
 
   wapixes:Array<any> = [];
   report:Array<any> = [];
-  token:string = environment.token;
+  token:string;
 
 
-  constructor(private wapixService:WapixService, private reportService:ReportService) { }
+  constructor(private wapixService:WapixService, private reportService:ReportService, private authService: AuthService) { }
 
   ngOnInit(): void {
     /*
       Obtain the token and the email from the session,
       for now, it is hardcoded.
     */
-    let email:string = 'gare_98@hotmail.com';
-    let token:string = environment.token;
+   let email:string = this.authService.getEmail();
+   this.token = this.authService.getToken();
 
-    this.wapixService.getWapixFromUser(email, token)
+    this.wapixService.getWapixFromUser(email, this.token)
       .then( data => {
         this.wapixes = data.wapix;
       })

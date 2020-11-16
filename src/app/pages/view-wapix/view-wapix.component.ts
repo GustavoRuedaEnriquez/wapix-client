@@ -1,10 +1,7 @@
 import { faPlayCircle, faEdit, faTrashAlt, faPlusCircle, faSurprise } from '@fortawesome/free-solid-svg-icons';
-
 import { Component, OnInit } from '@angular/core';
-
 import { WapixService } from '../../globals/services/wapix.service'
-
-import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/globals/services/auth.service';
 
 @Component({
   selector: 'app-view-wapix',
@@ -22,16 +19,15 @@ export class ViewWapixComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faSurprise = faSurprise;
 
-  constructor(private wapixService:WapixService) { }
+  constructor(private wapixService:WapixService, private authService: AuthService) { }
 
   ngOnInit(): void {
     /*
       Obtain the token and the email from the session,
       for now, it is hardcoded.
     */
-    let email:string = 'gare_98@hotmail.com';
-    
-    let token:string = environment.token;
+    let email:string = this.authService.getEmail();
+    let token:string = this.authService.getToken();
 
     this.wapixService.getWapixFromUser(email, token)
       .then( data => {
