@@ -30,14 +30,6 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
-
-    this.socialAuthService.authState.subscribe((user) => {
-      console.log('Datos del usuario', user);
-      this.userService.googleLogin(user).then(response => {
-        console.log('Response: ',response);
-        
-      })
-    });
   }
 
   // convenience getter for easy access to form fields
@@ -64,6 +56,15 @@ export class LoginComponent implements OnInit {
 
   googleLogin() {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID); 
+
+    this.socialAuthService.authState.subscribe((user) => {
+      this.userService.googleLogin(user).then(data => {
+        this.authService.save(data);
+        console.log("El usuario inicio sesión");
+        this.router.navigate(['../my-wapix']);
+        
+      })
+    });
   }
 
 }
