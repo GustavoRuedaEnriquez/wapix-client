@@ -8,6 +8,8 @@ import { WapixService } from '../../../globals/services/wapix.service';
 
 import { AuthService } from 'src/app/globals/services/auth.service';
 
+import { NavbarConfigService } from 'src/app/globals/services/navbar-config.service';
+
 @Component({
   selector: 'app-wapix-question',
   templateUrl: './wapix-question.component.html',
@@ -36,7 +38,13 @@ export class WapixQuestionComponent implements OnInit {
   isLoaded:boolean = false;
   nextQuestionReady:boolean = false;
 
-  constructor(private wapixService:WapixService, private activatedRoute:ActivatedRoute, private authService:AuthService) { 
+  constructor(
+    private wapixService:WapixService,
+    private activatedRoute:ActivatedRoute,
+    private authService:AuthService,
+    private navbarConfigService:NavbarConfigService
+  ) { 
+    this.navbarConfigService.hideNavbar();
     this.activatedRoute.params.subscribe( params => {
       this.isLoaded = false;
       this.nextQuestionReady = false;
@@ -82,6 +90,7 @@ export class WapixQuestionComponent implements OnInit {
   }
 
   exitWapix():void {
+    this.navbarConfigService.showNavbar();
     clearInterval(this.interval);
   }
 

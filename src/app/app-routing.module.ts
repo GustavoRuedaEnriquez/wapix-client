@@ -13,19 +13,18 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGuard } from './globals/guards/auth.guard';
 import { UnAuthGuard } from './globals/guards/unauth.guard';
-import { NavbarDisplayGuard } from './globals/guards/navbar-display.guard';
 
 const routes: Routes = [
   { path: '', redirectTo : 'my-wapix', pathMatch : 'full' },
   { path: 'my-wapix', component : ViewWapixComponent, canActivate: [AuthGuard]},
   { path: 'my-wapix/new', component : NewWapixComponent, canActivate: [AuthGuard] },
-  { path: 'my-wapix/play/:id', component : PlayWapixComponent, canActivate: [AuthGuard, NavbarDisplayGuard],  data : {display : true} },
+  { path: 'my-wapix/play/:id', component : PlayWapixComponent, canActivate: [AuthGuard]},
   { path: 'my-wapix/:id', component : EditWapixComponent, canActivate: [AuthGuard]},
   { path: 'report', component : ReportWapixComponent, canActivate: [AuthGuard] },
-  { path: 'guest', component : GuestPlayComponent, canActivate : [NavbarDisplayGuard], data : {display : false} },
-  { path: 'my-wapix/play/:id/question/:questionId', component : WapixQuestionComponent, canActivate: [AuthGuard, NavbarDisplayGuard], data : {display : false} },
+  { path: 'guest', component : GuestPlayComponent},
+  { path: 'my-wapix/play/:id/question/:questionId', component : WapixQuestionComponent, canActivate: [AuthGuard]},
   { path: 'login', component : LoginComponent, canActivate: [UnAuthGuard]},
-  { path: 'register', component : RegisterComponent, canActivate: [UnAuthGuard, NavbarDisplayGuard] },
+  { path: 'register', component : RegisterComponent, canActivate: [UnAuthGuard]},
   { path: 'profile', component : ProfileComponent, canActivate: [AuthGuard] },
 ];
 

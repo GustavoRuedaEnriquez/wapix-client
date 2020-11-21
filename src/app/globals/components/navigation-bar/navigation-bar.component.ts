@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { NavbarDisplayGuard } from '../../guards/navbar-display.guard';
+import { NavbarConfigService } from '../../services/navbar-config.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -14,8 +14,8 @@ export class NavigationBarComponent implements OnInit {
   loggedNavbar:boolean = true;
 
 
-  constructor(private router:Router, private authService:AuthService, private navbarDisplayGuard:NavbarDisplayGuard) { 
-    this.navbarDisplayGuard.showNavbar.subscribe( status => {
+  constructor(private router:Router, private authService:AuthService, private navbarConfigService:NavbarConfigService) { 
+    this.navbarConfigService.display.subscribe( status => {
       this.showNavbar = status;
     });
 
