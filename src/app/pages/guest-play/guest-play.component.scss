@@ -25,10 +25,21 @@ div.container-div {
 input {
   text-align: center;
   width: 140px;
+  border: 1px gray solid;
   font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.guest-input {
+  font-size: 1em;
 }
 
 .btn-guest {
   width: 140px;
   font-size: 1.5em;
+}
+
+input.ng-touched.ng-invalid {
+  border-color: #c71a1a;
 }

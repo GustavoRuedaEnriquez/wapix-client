@@ -36,7 +36,6 @@ export class WapixService {
 
   getQuestionFromWapix(wapixId:string, question:string, token:string):Promise<any> {
     let url:string = environment.apiUrl + `wapix/${wapixId}/${question}`;
-    console.log(url)
     let requestHeaders = {
       'Authorization' : `${token}`
     }
@@ -49,6 +48,11 @@ export class WapixService {
       'Authorization' : `${token}`
     }
     return this.httpClient.patch(url,wapix,{ headers : requestHeaders }).toPromise();
+  }
+
+  enterWapixCode(code:string):Promise<any> {
+    let url:string = environment.apiUrl + `wapix-by-code/${code}`;
+    return this.httpClient.get(url).toPromise();
   }
 
 }
