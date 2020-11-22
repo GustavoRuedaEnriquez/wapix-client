@@ -42,7 +42,7 @@
                     <p class="wapix-btn-title">Editar</p>
                 </a>
                 
-                <a routerLink="" class="btn wapix-btn-red action-btn">
+                <a (click)="deleteWapix(wapix._id)" class="btn wapix-btn-red action-btn">
                     <fa-icon class="wapix-fa-icon" [icon]="faTrashAlt"></fa-icon>
                     <p class="wapix-btn-title">Borrar</p>
                 </a>

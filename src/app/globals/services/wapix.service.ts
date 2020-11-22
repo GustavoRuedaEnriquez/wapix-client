@@ -51,4 +51,12 @@ export class WapixService {
     return this.httpClient.patch(url,wapix,{ headers : requestHeaders }).toPromise();
   }
 
+  deleteWapixFromId(id:string, token:string):Promise<any> {
+    let url:string = environment.apiUrl + `wapix/${id}`;
+    let requestHeaders = {
+      'Authorization' : `${token}`
+    }
+    return this.httpClient.delete(url,{ headers : requestHeaders }).toPromise();
+  }
+
 }

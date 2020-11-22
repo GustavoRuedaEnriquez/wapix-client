@@ -2,6 +2,7 @@ import { faPlayCircle, faEdit, faTrashAlt, faPlusCircle, faSurprise } from '@for
 import { Component, OnInit } from '@angular/core';
 import { WapixService } from '../../globals/services/wapix.service';
 import { AuthService } from 'src/app/globals/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-wapix',
@@ -19,7 +20,7 @@ export class ViewWapixComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faSurprise = faSurprise;
 
-  constructor(private wapixService:WapixService, private authService: AuthService) { }
+  constructor(private wapixService:WapixService, private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     /* Obtain the token and the email from the session */
@@ -37,4 +38,21 @@ export class ViewWapixComponent implements OnInit {
       });
 
   }
+
+  deleteWapix(wapixId:string):void {
+    console.log("wapix " + wapixId +" deleted");
+    /* Obtain the token and from the session. */
+    let token:string = this.authService.getToken();
+
+    this.wapixService.deleteWapixFromId(wapixId, token)
+      .then( data => {
+        console.log(data);
+        this.ngOnInit();
+      })
+      .catch( err => {
+        console.error(err);
+        alert("Sucedió un error al eliminar el wapix.");
+      })
+  }
+
 }
