@@ -33,9 +33,19 @@ export class GuestPlayComponent implements OnInit {
     if(this.form.valid) {
       this.wapixService.enterWapixCode(this.form.get('code').value)
       .then( data => {
+        /*
+          An available Wapix with that code is found, a connection,
+          will be made
+        */
         if(data.availability) {
-          console.log('Correcto, aquí es donde se hace la conexión con sockets.');
+          /* Stablish socket connection */
           this.socketService.connect();
+          /* Connect to Wapix */
+          this.socketService.emit('wapix-connect-player', {
+            username : this.form.get('username').value,
+            hostId : data.wapixInfo._id
+          });
+
         }
         else {
           alert(`${data.message}`);

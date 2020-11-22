@@ -15,15 +15,17 @@ export class SocketService {
     this.socketClient = socketIO.io(environment.socketUrl);
   }
 
-  on() {
-
+  on(event:string, callback:any) {
+    this.socketClient.on(event, callback);
   }
 
-  emit() {
-
+  emit(event:string, data:any) {
+    this.socketClient.emit(event, data);
   }
 
   disconnect() {
-    
+      if(this.socketClient && this.socketClient.connected) {
+        this.socketClient.disconnect();
+      }
   }
 }
