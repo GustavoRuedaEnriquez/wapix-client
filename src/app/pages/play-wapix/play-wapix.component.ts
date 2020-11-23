@@ -9,6 +9,8 @@ import { WapixService } from '../../globals/services/wapix.service';
 
 import { AuthService } from 'src/app/globals/services/auth.service';
 
+import { SocketService } from '../../globals/services/socket.service';
+
 
 @Component({
   selector: 'app-play-wapix',
@@ -24,16 +26,21 @@ export class PlayWapixComponent implements OnInit {
   wapixId:string;
   wapixObject:any = {}
   wapixCode:string;
+  players:Array<any> = [];
+  numberOfPlayers:number = 0;
   
 
-  constructor(private activatedRoute:ActivatedRoute, private wapixService:WapixService, private authService:AuthService) {
+  constructor(private activatedRoute:ActivatedRoute, private wapixService:WapixService, private authService:AuthService, private socketService:SocketService) {
     this.activatedRoute.params.subscribe( params => {
       this.wapixId = params.id;
     })
    }
 
+   
   ngOnInit(): void {
     /* Obtain the token and from the session */
+    this.socketService.connect();
+
     let token:string = this.authService.getToken();
     this.wapixService.activateWapix(this.wapixId, token)
       .then( activated => {
@@ -52,6 +59,13 @@ export class PlayWapixComponent implements OnInit {
         console.error(err);
         alert("Sucedió un error a la hora de activar el wapix.");
       });
+
+    
+    this.socketService.on('send-name', (player) => {
+      this.players.push(player.username);
+      this.numberOfPlayers++;
+      console.log(this.players);
+    });
   }
 
   exitClick():void {

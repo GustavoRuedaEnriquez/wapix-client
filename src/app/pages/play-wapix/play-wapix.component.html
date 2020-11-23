@@ -6,14 +6,14 @@
         </div>
     
         <div id="players-num-div">
-            <h4>0</h4>
+            <h4>{{numberOfPlayers}}</h4>
             <h4>jugadores</h4>
         </div>
     
         <div class="players-container">
             <div id="players-container">
                 <ul>
-                    
+                    <li *ngFor="let name of players">{{name}}</li>
                 </ul>
             </div>  
         </div>
