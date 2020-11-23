@@ -38,9 +38,6 @@ export class PlayWapixComponent implements OnInit {
 
    
   ngOnInit(): void {
-    /* Obtain the token and from the session */
-    this.socketService.connect();
-
     let token:string = this.authService.getToken();
     this.wapixService.activateWapix(this.wapixId, token)
       .then( activated => {
@@ -60,7 +57,13 @@ export class PlayWapixComponent implements OnInit {
         alert("Sucedió un error a la hora de activar el wapix.");
       });
 
+    /* Obtain the token and from the session */
+    this.socketService.connect();
     
+    /* Start game in backend */
+    this.socketService.emit('wapix-start-game', this.wapixId);
+
+    /* Event to display recently joined player */
     this.socketService.on('send-name', (player) => {
       this.players.push(player.username);
       this.numberOfPlayers++;
