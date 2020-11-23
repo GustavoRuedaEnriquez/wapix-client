@@ -52,6 +52,6 @@ export class EditWapixComponent implements OnInit {
   }
 
   exitClick():void {
-    console.log("Me salí, debo de actualizar el availability");
+    
   }
 }

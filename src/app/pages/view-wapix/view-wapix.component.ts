@@ -40,13 +40,10 @@ export class ViewWapixComponent implements OnInit {
   }
 
   deleteWapix(wapixId:string):void {
-    console.log("wapix " + wapixId +" deleted");
     /* Obtain the token and from the session. */
     let token:string = this.authService.getToken();
-
     this.wapixService.deleteWapixFromId(wapixId, token)
       .then( data => {
-        console.log(data);
         this.ngOnInit();
       })
       .catch( err => {

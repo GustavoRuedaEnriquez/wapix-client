@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
 
         this.userService.createUser(this.registerForm.value)
         .then( data => {
-          console.log(data);
           alert("El usuario fue creado");
         })
         .catch( err => {

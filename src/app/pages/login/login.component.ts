@@ -42,9 +42,7 @@ export class LoginComponent implements OnInit {
       this.logged = true;
       this.userService.loginUser(this.loginForm.value)
         .then(data => {
-          console.log(data);
           this.authService.save(data);
-          console.log("El usuario inicio sesión");
           this.router.navigate(['../my-wapix']);
         })
         .catch(err => {
@@ -60,7 +58,6 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.userService.googleLogin(user).then(data => {
         this.authService.save(data);
-        console.log("El usuario inicio sesión");
         this.router.navigate(['../my-wapix']);
         
       })
