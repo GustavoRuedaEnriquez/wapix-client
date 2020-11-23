@@ -35,21 +35,33 @@ export class PlayWapixComponent implements OnInit {
   ngOnInit(): void {
     /* Obtain the token and from the session */
     let token:string = this.authService.getToken();
-    this.wapixService.getWapixFromId(this.wapixId, token)
-      .then( data => {
-        this.wapixObject = data.wapix[0];
-        this.wapixCode = this.wapixObject.code;
-        this.isLoading = false;
+    this.wapixService.activateWapix(this.wapixId, token)
+      .then( activated => {
+        this.wapixService.getWapixFromId(this.wapixId, token)
+          .then( data => {
+            this.wapixObject = data.wapix[0];
+            this.wapixCode = this.wapixObject.code;
+            this.isLoading = false;
+          })
+          .catch( err => {
+            console.error(err);
+            alert("Sucedió un error a la hora de cargar el wapix.");
+          });
       })
       .catch( err => {
         console.error(err);
-        alert("Sucedió un error a la hora de cargar el wapix.");
-      }
-    );
+        alert("Sucedió un error a la hora de activar el wapix.");
+      });
   }
 
   exitClick():void {
-    console.log("me salí");
+    /* Obtain the token and from the session */
+    let token:string = this.authService.getToken();
+    this.wapixService.deactivateWapix(this.wapixId, token)
+      .catch( err => {
+        console.error(err);
+        alert("Sucedió un error a la hora de desactivar el wapix.");
+      });
   }
 
 }

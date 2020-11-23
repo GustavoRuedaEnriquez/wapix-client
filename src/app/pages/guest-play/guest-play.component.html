@@ -1,11 +1,15 @@
 <div class="body-div-guest">
     <div class="container-div">
-        <div>
-            <h1>Wapix</h1>
-            <h4>Ingrese PIN:</h4>
-            <input class="guest-input" id="code" type="text">
-        </div>  
-        <br>
-        <button class="btn wapix-btn-yellow btn-guest" type="submit">¡Iniciar!</button>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div>
+                <h1>Wapix</h1>
+                <h4>PIN:</h4>
+                <input class="guest-input" formControlName="code" id="code" type="text">
+                <h4>Apodo:</h4>
+                <input class="guest-input" formControlName="username" id="username" type="text">
+            </div>  
+            <br>
+            <button class="btn wapix-btn-yellow btn-guest" type="submit">¡Iniciar!</button>
+        </form>
     </div>
 </div>
