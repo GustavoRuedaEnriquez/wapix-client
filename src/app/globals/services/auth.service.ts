@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  loginStatus:BehaviorSubject<boolean> = new BehaviorSubject(false);
+  loginStatus:BehaviorSubject<boolean> = new BehaviorSubject(this.isLoggedIn());
 
   constructor() { }
 
