@@ -24,7 +24,8 @@ import { GuestPlayComponent } from './pages/guest-play/guest-play.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { environment } from '../environments/environment'
+import { environment } from '../environments/environment';
+import { WapixQuestionsGuestComponent } from './globals/components/wapix-questions-guest/wapix-questions-guest.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { environment } from '../environments/environment'
     GuestPlayComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    WapixQuestionsGuestComponent
   ],
   imports: [
     BrowserModule,

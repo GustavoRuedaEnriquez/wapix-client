@@ -31,9 +31,6 @@ export class GuestPlayComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.submitted = true;
-    console.log('submitted, spinner must be in screen lol', this.submitted); //deletethisshit
-
     if(this.form.valid) {
       this.wapixService.enterWapixCode(this.form.get('code').value)
       .then( data => {
@@ -42,6 +39,7 @@ export class GuestPlayComponent implements OnInit {
           will be made
         */
         if(data.availability) {
+          this.submitted = true;
           /* Stablish socket connection */
           this.socketService.connect();
           /* Connect to Wapix */
