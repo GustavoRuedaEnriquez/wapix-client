@@ -11,6 +11,10 @@ import { AuthService } from 'src/app/globals/services/auth.service';
 
 import { SocketService } from '../../globals/services/socket.service';
 
+import { ResultsService } from '../../globals/services/results.service';
+
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-play-wapix',
@@ -30,13 +34,20 @@ export class PlayWapixComponent implements OnInit {
   numberOfPlayers:number = 0;
   
 
-  constructor(private activatedRoute:ActivatedRoute, private wapixService:WapixService, private authService:AuthService, private socketService:SocketService) {
+  constructor(
+    private activatedRoute:ActivatedRoute,
+    private wapixService:WapixService,
+    private resultsService:ResultsService,
+    private authService:AuthService,
+    private socketService:SocketService,
+    private route:Router)
+  {
     this.activatedRoute.params.subscribe( params => {
       this.wapixId = params.id;
     })
-   }
+  }
 
-   
+  
   ngOnInit(): void {
     let token:string = this.authService.getToken();
     this.wapixService.activateWapix(this.wapixId, token)
@@ -59,12 +70,12 @@ export class PlayWapixComponent implements OnInit {
 
     /* Obtain the token and from the session */
     this.socketService.connect();
-    
+  
     /* Start game in backend */
-    this.socketService.emit('wapix-start-game', this.wapixId);
+    this.socketService.emit('wapix-enable-game', this.wapixId);
 
     /* Event to display recently joined player */
-    this.socketService.on('send-name', (player) => {
+    this.socketService.on('wapix-send-player', (player) => {
       this.players.push(player.username);
       this.numberOfPlayers++;
       console.log(this.players);
@@ -78,6 +89,28 @@ export class PlayWapixComponent implements OnInit {
       .catch( err => {
         console.error(err);
         alert("Sucedió un error a la hora de desactivar el wapix.");
+      });
+  }
+
+  startGame():void {
+    /* Obtain the token and from the session */
+    let token:string = this.authService.getToken();
+    /* Create the result entry in the database */
+    let wapix = {
+      wapixId : this.wapixId,
+      date : `${new Date()}`,
+      playersJoined : this.players,
+      results : []
+    }
+    this.resultsService.createResult(wapix, token)
+      .then((result) => {
+        console.log(result);
+        /* Redirect to the first question */
+        this.route.navigate([`/my-wapix/play/${this.wapixId}/question/1`]);
+      })
+      .catch( err => {
+        console.error(err);
+        alert("Sucedió un error a la hora de iniciar el wapix.");
       });
   }
 

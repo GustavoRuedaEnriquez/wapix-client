@@ -45,7 +45,6 @@ export class GuestPlayComponent implements OnInit {
             username : this.form.get('username').value,
             hostId : data.wapixInfo._id
           });
-
         }
         else {
           alert(`${data.message}`);
