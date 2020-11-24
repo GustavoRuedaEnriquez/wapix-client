@@ -12,6 +12,7 @@ import { SocketService } from '../../globals/services/socket.service';
 export class GuestPlayComponent implements OnInit {
 
   form: FormGroup;
+  submitted = false;
 
   constructor(
     private navbarConfigService:NavbarConfigService,
@@ -30,6 +31,9 @@ export class GuestPlayComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.submitted = true;
+    console.log('submitted, spinner must be in screen lol', this.submitted); //deletethisshit
+
     if(this.form.valid) {
       this.wapixService.enterWapixCode(this.form.get('code').value)
       .then( data => {

@@ -1,5 +1,5 @@
 <div class="body-div-guest">
-    <div class="container-div">
+    <div *ngIf="!submitted" class="container-div">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div>
                 <h1>Wapix</h1>
@@ -11,5 +11,12 @@
             <br>
             <button class="btn wapix-btn-yellow btn-guest" type="submit">¡Iniciar!</button>
         </form>
+    </div>
+    <div *ngIf="submitted" class="center">
+        <div class="center">
+            <div class="loader container"></div>
+            <br>
+            <h4> Waiting for host to start the game</h4>
+        </div>
     </div>
 </div>
