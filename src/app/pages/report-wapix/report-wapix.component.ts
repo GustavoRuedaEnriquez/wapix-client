@@ -1,12 +1,12 @@
 /* Font-awesome Icons */
-import { faSearchPlus, faSearch, faSurprise } from '@fortawesome/free-solid-svg-icons';
+import { faSearchPlus, faSearch, faSurprise, faFileExcel } from '@fortawesome/free-solid-svg-icons';
 
 /* imports */
 import { Component, OnInit } from '@angular/core';
 import { WapixService } from 'src/app/globals/services/wapix.service';
 import { ReportService } from 'src/app/globals/services/report.service';
 import { AuthService } from 'src/app/globals/services/auth.service';
-
+import { XslxExportService } from 'src/app/globals/services/xslx-export.service';
 
 @Component({
   selector: 'app-report-wapix',
@@ -15,43 +15,53 @@ import { AuthService } from 'src/app/globals/services/auth.service';
 })
 export class ReportWapixComponent implements OnInit {
 
-  faSearchPlus =faSearchPlus;
-  faSearch =faSearch;
+  faSearchPlus = faSearchPlus;
+  faSearch = faSearch;
   faSurprise = faSurprise;
+  faFileExcel = faFileExcel;
+  btn: Boolean = true;
+  isLoading: Boolean = true;
 
-  wapixes:Array<any> = [];
-  report:Array<any> = [];
+  wapixes: Array<any> = [];
+  report: Array<any> = [];
 
 
-  constructor(private wapixService:WapixService, private reportService:ReportService, private authService: AuthService) { }
+  constructor(private wapixService: WapixService, private reportService: ReportService, private authService: AuthService, private xslxExportService: XslxExportService) { }
 
   ngOnInit(): void {
     /* Obtain the token and the email from the session */
-   let email:string = this.authService.getEmail();
-   let token:string = this.authService.getToken();
+    let email: string = this.authService.getEmail();
+    let token: string = this.authService.getToken();
 
     this.wapixService.getWapixFromUser(email, token)
-      .then( data => {
+      .then(data => {
         this.wapixes = data.wapix;
+        this.isLoading = false;
       })
-      .catch( err => {
+      .catch(err => {
         console.error(err);
       });
 
   }
 
-  getResultByWapixId(){
+  getResultByWapixId() {
 
-    let wapix:any = document.getElementById('selectWapix');
+    this.btn = false;
+
+    let wapix: any = document.getElementById('selectWapix');
     let id = wapix.options[wapix.selectedIndex].value;
-    let token:string = this.authService.getToken();
+    let name: string = wapix.options[wapix.selectedIndex].text;
+    let token: string = this.authService.getToken();
 
     this.reportService.getResultByWapixId(id, token)
-      .then( data => {
+      .then(data => {
         this.report = data.result;
-        console.log('Results obtained from wapix', id);
-        console.log('result: ' ,this.report);
-    });
+        console.log('Results obtained from wapix ' + name + ', id: ' + id);
+      });
+  }
+
+  exportResults(result:any) {
+    console.log('Descargando... ', result);
   }
 
 }

@@ -1,29 +1,58 @@
 <app-navigation-bar></app-navigation-bar>
 <div class="body-div">
-    <div class="small-padding">
-        <h1> Generar Reporte</h1>
+  <div class="small-padding">
+    <h1> Generar Reporte</h1>
+  </div>
+
+  <!-- div to show if you DO NOT have Wapix -->
+  <div *ngIf="wapixes.length == 0 && isLoading == false" id="wapix-blank-list-div" class="text-center">
+    <fa-icon id="fa-icon-surprise" [icon]="faSurprise"></fa-icon>
+    <h2>¡No tienes Wapix aún!</h2>
+  </div>
+  <!-- div to show if you DO have Wapix -->
+  <div class="center">
+    <div *ngIf="wapixes.length != 0" class="grid sm-100 md-50 lg-50">
+      <!-- Wapix -->
+      <div class="sm-25 md-25 lg-25 small-padding">
+        <label for="questionType-s">Seleccione Wapix</label>
+        <br>
+        <select name="selectWapix" class="whole-width" id="selectWapix">
+          <option *ngFor="let wapix of wapixes" value="{{wapix._id}}">{{wapix.name}}</option>
+        </select>
+      </div>
+      <br>
+      <button (click)="getResultByWapixId()" class="wapix-btn-dark-blue">
+        <fa-icon id="fa-icon-searchPlus" [icon]="faSearchPlus"></fa-icon>
+      </button>
+    </div>
+    <br>
+    <br>
+
+    <!-- div to show if you DO NOT have results on the Wapix -->
+    <div *ngIf="report.length == 0 && btn == false" id="wapix-blank-list-div" class="text-center">
+      <fa-icon id="fa-icon-surprise" [icon]="faSurprise"></fa-icon>
+      <h2>¡No tienes resultados en este Wapix!</h2>
     </div>
 
-    <!-- div to show if you DO NOT have Wapix -->
-    <div *ngIf="wapixes.length == 0" id="wapix-blank-list-div" class="text-center">
-        <fa-icon id="fa-icon-surprise" [icon]="faSurprise"></fa-icon>
-        <h2>¡No tienes Wapix aún!</h2>
-    </div>
-    <!-- div to show if you DO have Wapix -->
-    <div class="center">
-        <div *ngIf="wapixes.length != 0" class="grid sm-100 md-50 lg-50">
-            <!-- Wapix -->
-            <div class="sm-25 md-25 lg-25 small-padding">
-                <label for="questionType-s">Seleccione Wapix</label>
-                <br>
-                <select name="selectWapix" class="whole-width" id="selectWapix">
-                    <option *ngFor="let wapix of wapixes" value="{{wapix._id}}">{{wapix.name}}</option> 
-                </select>
+    <!-- div to show if you DO have results on the Wapix -->
+    <div *ngIf="report.length != 0" id="wapix-list-div">
+      <div class="wapix-list-element-div" *ngFor="let result of report">
+        <div class="wapix-list-details-div">
+            <h2>Fecha: {{result.date}}</h2>
+            <div class="wapix-details-div">
+                <h4>Preguntas: {{result.result.length}}</h4>
+                <h4>Jugadores: {{result.playersJoined.length}}</h4>
             </div>
-            <br>
-            <button (click)="getResultByWapixId()" class="wapix-btn-dark-blue">
-                <fa-icon [icon]="faSearchPlus"></fa-icon>
-            </button>
         </div>
+
+        <div class="wapix-list-buttons-div">
+          <a (click)="exportResults(result)" class="btn wapix-btn-light-blue action-btn">
+            <fa-icon class="wapix-fa-icon" [icon]="faFileExcel"></fa-icon>
+            <p class="wapix-btn-title">Descarga</p>
+          </a>
+        </div>
+      </div>
     </div>
+
+  </div>
 </div>

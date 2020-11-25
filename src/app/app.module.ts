@@ -37,7 +37,7 @@ import { WapixQuestionsGuestComponent } from './globals/components/wapix-questio
     NewWapixComponent,
     EditWapixComponent,
     PlayWapixComponent,
-    WapixQuestionComponent,
+    WapixQuestionComponent, 
     GuestPlayComponent,
     LoginComponent,
     RegisterComponent,

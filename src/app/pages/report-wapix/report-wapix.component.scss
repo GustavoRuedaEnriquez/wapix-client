@@ -22,3 +22,72 @@ button {
     width: 30px;
     height: 30px;
 }
+
+/* First section */
+#first-div {
+    display: inline-block;
+    width: 100%;
+}
+#title {
+    float: left;
+    color: #077C9A;
+}
+#new-wapix-btn {
+    float:right;
+    margin: 10px 0px 10px 0px;
+    font-weight: bold;
+}
+#add-icon {
+    margin-right: 10px;
+}
+
+/* No wapix */
+#fa-icon-searchPlus {
+    color : #ffffff;
+}
+
+#fa-icon-surprise {
+    font-size: 6em;
+    color : #077C9A;
+}
+
+/* List */
+.wapix-list-element-div {
+    display: inline-block;
+    width: 100%;
+    margin: 20px 0px;
+    padding: 10px 20px;
+    border: 1px solid gray; 
+    box-shadow: 0px 10px 10px grey;
+}
+.wapix-list-details-div {
+    float: left;
+}
+.wapix-details-div p {
+    margin: 0px;
+}
+.wapix-list-buttons-div {
+    float:right;
+}
+.wapix-list-buttons-div button{
+    text-align: center;
+    margin: 15px 15px 15px 15px;
+    width: 100px;
+    height: 100px;
+}
+.edit-fa-icon {
+    margin-left: 10px !important;
+}
+.wapix-fa-icon {
+    font-size: 2.4em;
+    margin: 0;
+}
+.wapix-btn-title{
+    font-size: 16px;
+    font-weight: bold;
+}
+.action-btn {
+    margin: 17px;
+    width: 100px;
+    height: 100px;
+}
