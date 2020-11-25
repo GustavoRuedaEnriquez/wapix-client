@@ -1,10 +1,6 @@
 <div class="body-div-guest">
     <h3>Seleccione una respuesta</h3>
     <div class="grid answer-container">
-        <!--<div *ngFor="let answer of answers" class="answer-wapix" isCorrect="{{answer.isCorrect}}"><p>{{answer.answerText}}</p></div>-->
-        <div class="border sm-50 md-50 lg-50 answer-wapix"></div>
-        <div class="border sm-50 md-50 lg-50 answer-wapix"></div>
-        <div class="border sm-50 md-50 lg-50 answer-wapix"></div>
-        <div class="border sm-50 md-50 lg-50 answer-wapix"></div>
+        <div *ngFor="let answer of answers" class="sm-50 md-50 lg-50 answer-wapix" isCorrect="{{answer.isCorrect}}"></div>
     </div>
 </div>

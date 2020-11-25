@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/globals/services/auth.service';
 
 import { NavbarConfigService } from 'src/app/globals/services/navbar-config.service';
 
+import { SocketService } from 'src/app/globals/services/socket.service';
+
 @Component({
   selector: 'app-wapix-question',
   templateUrl: './wapix-question.component.html',
@@ -42,7 +44,8 @@ export class WapixQuestionComponent implements OnInit {
     private wapixService:WapixService,
     private activatedRoute:ActivatedRoute,
     private authService:AuthService,
-    private navbarConfigService:NavbarConfigService
+    private navbarConfigService:NavbarConfigService,
+    private socketService:SocketService
   ) { 
     this.navbarConfigService.hideNavbar();
     this.activatedRoute.params.subscribe( params => {
@@ -57,6 +60,11 @@ export class WapixQuestionComponent implements OnInit {
 
       this.wapixService.getQuestionFromWapix(this.wapixId, this.questionId, token)
       .then( data => {
+        /* Emit the question */
+        let dataToEmit = JSON.parse(JSON.stringify(data));
+        dataToEmit.wapixId = this.wapixId;
+        this.socketService.emit('wapix-host-show-question', dataToEmit);
+
         this.questionText = data.question.questionText;
         this.questionPoints = data.question.questionPoints;
         this.totalQuestions = data.total;

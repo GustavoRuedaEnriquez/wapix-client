@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'my-wapix/play/:id', component : PlayWapixComponent, canActivate: [AuthGuard]},
   { path: 'my-wapix/:id', component : EditWapixComponent, canActivate: [AuthGuard]},
   { path: 'report', component : ReportWapixComponent, canActivate: [AuthGuard] },
-  { path: 'guest-play', component : GuestPlayComponent},
+  { path: 'guest', component : GuestPlayComponent},
   { path: 'guest-question/:username', component : GuestQuestionComponent},
   { path: 'my-wapix/play/:id/question/:questionId', component : WapixQuestionComponent, canActivate: [AuthGuard]},
   { path: 'login', component : LoginComponent, canActivate: [UnAuthGuard]},

@@ -71,7 +71,7 @@ export class PlayWapixComponent implements OnInit {
     /* Obtain the token and from the session */
     this.socketService.connect();
   
-    /* Start game in backend */
+    /* Enable game in backend */
     this.socketService.emit('wapix-enable-game', this.wapixId);
 
     /* Event to display recently joined player */
@@ -105,6 +105,8 @@ export class PlayWapixComponent implements OnInit {
     this.resultsService.createResult(wapix, token)
       .then((result) => {
         console.log(result);
+        /* Start game in backend */
+        this.socketService.emit('wapix-host-start-game', this.wapixId);
         /* Redirect to the first question */
         this.route.navigate([`/my-wapix/play/${this.wapixId}/question/1`]);
       })
