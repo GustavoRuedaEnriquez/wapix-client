@@ -19,8 +19,7 @@
         </div>
         
         <a routerLink="../.." class="btn wapix-btn-red left" type="button" (click)="exitClick()"> <fa-icon class="wapix-fa-icon" [icon]="faDoorOpen"></fa-icon> Salir</a>
-
-        <a class="btn wapix-btn-yellow right" type="button" (click)="startGame()"> <fa-icon class="wapix-fa-icon" [icon]="faGamepad"></fa-icon> Comenzar</a>
+        <a *ngIf="numberOfPlayers != 0" class="btn wapix-btn-yellow right" type="button" (click)="startGame()"> <fa-icon class="wapix-fa-icon" [icon]="faGamepad"></fa-icon> Comenzar</a>
     </div>
 </div>
 

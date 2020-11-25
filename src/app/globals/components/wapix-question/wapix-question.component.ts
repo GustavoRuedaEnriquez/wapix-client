@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { WapixService } from '../../../globals/services/wapix.service';
 
+import { ResultsService } from '../../../globals/services/results.service';
+
 import { AuthService } from 'src/app/globals/services/auth.service';
 
 import { NavbarConfigService } from 'src/app/globals/services/navbar-config.service';
@@ -23,12 +25,14 @@ export class WapixQuestionComponent implements OnInit {
   faArrowCircleRight = faArrowCircleRight
 
   wapixId:string;
+  resultId:string;
   questionId:string;
   nextQuestionId:string;
 
   timebar:any;
   interval:any;
   
+  requestData:any;
   questionText:string;
   questionPoints:number;
   totalQuestions:number;
@@ -42,6 +46,7 @@ export class WapixQuestionComponent implements OnInit {
 
   constructor(
     private wapixService:WapixService,
+    private resultsService:ResultsService,
     private activatedRoute:ActivatedRoute,
     private authService:AuthService,
     private navbarConfigService:NavbarConfigService,
@@ -52,6 +57,7 @@ export class WapixQuestionComponent implements OnInit {
       this.isLoaded = false;
       this.nextQuestionReady = false;
       this.wapixId = params.id;
+      this.resultId = params.resultId;
       this.questionId = params.questionId;
       this.nextQuestionId = `${parseInt(this.questionId) + 1}`;
 
@@ -60,11 +66,8 @@ export class WapixQuestionComponent implements OnInit {
 
       this.wapixService.getQuestionFromWapix(this.wapixId, this.questionId, token)
       .then( data => {
-        /* Emit the question */
-        let dataToEmit = JSON.parse(JSON.stringify(data));
-        dataToEmit.wapixId = this.wapixId;
-        this.socketService.emit('wapix-host-show-question', dataToEmit);
-
+        /* Set the question text, options, settings */
+        this.requestData = data;
         this.questionText = data.question.questionText;
         this.questionPoints = data.question.questionPoints;
         this.totalQuestions = data.total;
@@ -75,6 +78,7 @@ export class WapixQuestionComponent implements OnInit {
         this.isLoaded = true;
         this.timebar = document.getElementById("time-bar-element");
 
+        /* Start the time interval */
         this.interval = setInterval(() => {
           if(this.secondsLeft > 0) {
             this.timebar.style.width = `${(100 * this.secondsLeft) / this.seconds}%`;
@@ -88,9 +92,29 @@ export class WapixQuestionComponent implements OnInit {
           }
         }, 10);
 
-      });
+        /* Save the question in the result stored in the db */
+        let question = JSON.parse(JSON.stringify(this.requestData.question));
+        question.questionNumber = parseInt(this.questionId);
+        question.submissions = [];
+        let requestQuestion = {
+          question : question
+        };
 
-    })
+        this.resultsService.addQuestionToResult(requestQuestion, this.resultId, token)
+         .then((response) => {
+          /* Emit the question */
+          let dataToEmit = JSON.parse(JSON.stringify(data));
+          dataToEmit.wapixId = this.wapixId;
+          dataToEmit.resultId = this.resultId;
+          dataToEmit.questionNumber = this.questionId;
+          this.socketService.emit('wapix-host-show-question', dataToEmit);
+         })
+         .catch( err => {
+          console.error(err);
+          alert("Sucedió un error a la hora de guardar la pregunta en los results el wapix.");
+         });
+      });
+    });
   }
 
   ngOnInit(): void {

@@ -78,7 +78,6 @@ export class PlayWapixComponent implements OnInit {
     this.socketService.on('wapix-send-player', (player) => {
       this.players.push(player.username);
       this.numberOfPlayers++;
-      console.log(this.players);
     });
   }
 
@@ -103,12 +102,15 @@ export class PlayWapixComponent implements OnInit {
       results : []
     }
     this.resultsService.createResult(wapix, token)
-      .then((result) => {
-        console.log(result);
+      .then((resultData) => {
         /* Start game in backend */
-        this.socketService.emit('wapix-host-start-game', this.wapixId);
+        let dataToEmit = {
+          wapixId : this.wapixId,
+          resultId : resultData.result._id
+        }
+        this.socketService.emit('wapix-host-start-game', dataToEmit);
         /* Redirect to the first question */
-        this.route.navigate([`/my-wapix/play/${this.wapixId}/question/1`]);
+        this.route.navigate([`/my-wapix/play/${this.wapixId}/question/1/${resultData.result._id}`]);
       })
       .catch( err => {
         console.error(err);

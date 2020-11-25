@@ -42,7 +42,7 @@ export class GuestPlayComponent implements OnInit {
         */
         if(data.availability) {
           this.submitted = true;
-          /* Stablish socket connection */
+          /* Establish socket connection */
           this.socketService.connect();
           /* Connect to Wapix */
           this.socketService.emit('wapix-connect-player', {
@@ -50,8 +50,8 @@ export class GuestPlayComponent implements OnInit {
             hostId : data.wapixInfo._id
           });
           /* Host starts the game */
-          this.socketService.on('wapix-start-game', () => {
-            this.route.navigate([`/guest-question/${this.form.get('username').value}`]);
+          this.socketService.on('wapix-start-game', (resultId) => {
+            this.route.navigate([`/guest-question/${this.form.get('username').value}/${resultId}`]);
           });
         }
         else {
