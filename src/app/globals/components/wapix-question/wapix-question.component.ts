@@ -1,18 +1,11 @@
 import { faTimesCircle, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
-
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute } from '@angular/router';
-
-import { WapixService } from '../../../globals/services/wapix.service';
-
-import { ResultsService } from '../../../globals/services/results.service';
-
 import { AuthService } from 'src/app/globals/services/auth.service';
-
-import { NavbarConfigService } from 'src/app/globals/services/navbar-config.service';
-
+import { WapixService } from '../../../globals/services/wapix.service';
 import { SocketService } from 'src/app/globals/services/socket.service';
+import { ResultsService } from '../../../globals/services/results.service';
+import { NavbarConfigService } from 'src/app/globals/services/navbar-config.service';
 
 @Component({
   selector: 'app-wapix-question',

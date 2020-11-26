@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NavbarConfigService } from '../../globals/services/navbar-config.service';
 import { ActivatedRoute } from '@angular/router';
-import { ResultsService } from '../../globals/services/results.service';
-import { SocketService } from '../../globals/services/socket.service';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/globals/services/auth.service';
+import { SocketService } from '../../globals/services/socket.service';
+import { ResultsService } from '../../globals/services/results.service';
+import { NavbarConfigService } from '../../globals/services/navbar-config.service';
 
 @Component({
   selector: 'app-guest-question',
@@ -43,7 +43,7 @@ export class GuestQuestionComponent implements OnInit {
   }
 
   clickedAnswer(answer):void {
-    /* Block the buttons */
+    /* TODO: Block the buttons */
     
     /* TODO: Calculate points */
 

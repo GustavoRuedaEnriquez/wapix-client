@@ -1,9 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NavbarConfigService } from '../../globals/services/navbar-config.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WapixService } from '../../globals/services/wapix.service';
 import { SocketService } from '../../globals/services/socket.service';
-import {Router} from '@angular/router';
+import { NavbarConfigService } from '../../globals/services/navbar-config.service';
 
 @Component({
   selector: 'app-guest-play',
