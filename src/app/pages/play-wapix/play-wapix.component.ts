@@ -1,20 +1,11 @@
 /* Font Awesome icons */
 import { faGamepad, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-
 import { Component, OnInit } from '@angular/core';
-
-import { ActivatedRoute } from '@angular/router';
-
-import { WapixService } from '../../globals/services/wapix.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/globals/services/auth.service';
-
+import { WapixService } from '../../globals/services/wapix.service';
 import { SocketService } from '../../globals/services/socket.service';
-
 import { ResultsService } from '../../globals/services/results.service';
-
-import {Router} from '@angular/router';
-
 
 @Component({
   selector: 'app-play-wapix',
@@ -84,6 +75,7 @@ export class PlayWapixComponent implements OnInit {
   exitClick():void {
     /* Obtain the token and from the session */
     let token:string = this.authService.getToken();
+    this.socketService.disconnect();
     this.wapixService.deactivateWapix(this.wapixId, token)
       .catch( err => {
         console.error(err);

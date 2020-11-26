@@ -122,6 +122,7 @@ export class WapixQuestionComponent implements OnInit {
   }
 
   exitWapix():void {
+    this.socketService.emit('wapix-host-ends-game', this.wapixId);
     this.navbarConfigService.showNavbar();
     clearInterval(this.interval);
   }

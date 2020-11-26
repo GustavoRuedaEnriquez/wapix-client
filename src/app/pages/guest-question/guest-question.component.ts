@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { SocketService } from '../../globals/services/socket.service';
@@ -24,6 +24,7 @@ export class GuestQuestionComponent implements OnInit {
   constructor(
     private navbarConfigService:NavbarConfigService,
     private activatedRoute:ActivatedRoute,
+    private route:Router,
     private socketService:SocketService,
     private resultsService:ResultsService,
     private authService:AuthService)
@@ -50,8 +51,14 @@ export class GuestQuestionComponent implements OnInit {
         this.rand = Math.floor((Math.random() * 10) + 1);
       }
     });
+    /* Event when the next question is showed in the host */
     this.socketService.on('wapix-next-question', () => {
       this.answerClicked = false;
+    });
+    /* Event when the Wapix is ended by its host */
+    this.socketService.on('wapix-disconnect-player', () => {
+      this.socketService.disconnect();
+      this.route.navigate([`/guest`]);
     });
   }
 
