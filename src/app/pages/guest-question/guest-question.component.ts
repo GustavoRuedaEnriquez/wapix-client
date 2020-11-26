@@ -18,6 +18,8 @@ export class GuestQuestionComponent implements OnInit {
   data:any = {};
   question:any = {};
   answers:any = [];
+  clicked = false;
+  rand = 0;
 
   constructor(
     private navbarConfigService:NavbarConfigService,
@@ -44,6 +46,8 @@ export class GuestQuestionComponent implements OnInit {
 
   clickedAnswer(answer):void {
     /* TODO: Block the buttons */
+    this.clicked = true;
+    this.rand = Math.floor((Math.random() * 10) + 1);
     
     /* TODO: Calculate points */
 
