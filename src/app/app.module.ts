@@ -21,11 +21,11 @@ import { EditWapixComponent } from './pages/edit-wapix/edit-wapix.component';
 import { WapixQuestionComponent } from './globals/components/wapix-question/wapix-question.component';
 import { ReportWapixComponent } from './pages/report-wapix/report-wapix.component';
 import { GuestPlayComponent } from './pages/guest-play/guest-play.component';
+import { GuestQuestionComponent } from './pages/guest-question/guest-question.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { environment } from '../environments/environment';
-import { WapixQuestionsGuestComponent } from './globals/components/wapix-questions-guest/wapix-questions-guest.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { WapixQuestionsGuestComponent } from './globals/components/wapix-questio
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    WapixQuestionsGuestComponent
+    GuestQuestionComponent
   ],
   imports: [
     BrowserModule,

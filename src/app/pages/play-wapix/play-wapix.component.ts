@@ -1,20 +1,11 @@
 /* Font Awesome icons */
 import { faGamepad, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-
 import { Component, OnInit } from '@angular/core';
-
-import { ActivatedRoute } from '@angular/router';
-
-import { WapixService } from '../../globals/services/wapix.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/globals/services/auth.service';
-
+import { WapixService } from '../../globals/services/wapix.service';
 import { SocketService } from '../../globals/services/socket.service';
-
 import { ResultsService } from '../../globals/services/results.service';
-
-import {Router} from '@angular/router';
-
 
 @Component({
   selector: 'app-play-wapix',
@@ -71,20 +62,20 @@ export class PlayWapixComponent implements OnInit {
     /* Obtain the token and from the session */
     this.socketService.connect();
   
-    /* Start game in backend */
+    /* Enable game in backend */
     this.socketService.emit('wapix-enable-game', this.wapixId);
 
     /* Event to display recently joined player */
     this.socketService.on('wapix-send-player', (player) => {
       this.players.push(player.username);
       this.numberOfPlayers++;
-      console.log(this.players);
     });
   }
 
   exitClick():void {
     /* Obtain the token and from the session */
     let token:string = this.authService.getToken();
+    this.socketService.disconnect();
     this.wapixService.deactivateWapix(this.wapixId, token)
       .catch( err => {
         console.error(err);
@@ -103,10 +94,15 @@ export class PlayWapixComponent implements OnInit {
       results : []
     }
     this.resultsService.createResult(wapix, token)
-      .then((result) => {
-        console.log(result);
+      .then((resultData) => {
+        /* Start game in backend */
+        let dataToEmit = {
+          wapixId : this.wapixId,
+          resultId : resultData.result._id
+        }
+        this.socketService.emit('wapix-host-start-game', dataToEmit);
         /* Redirect to the first question */
-        this.route.navigate([`/my-wapix/play/${this.wapixId}/question/1`]);
+        this.route.navigate([`/my-wapix/play/${this.wapixId}/question/1/${resultData.result._id}`]);
       })
       .catch( err => {
         console.error(err);

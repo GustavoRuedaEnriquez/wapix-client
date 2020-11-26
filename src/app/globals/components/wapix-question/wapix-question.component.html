@@ -1,7 +1,7 @@
 <div class="body-div">
     <div class="header-part-div">
-        <a routerLink="../.." class="left-btn btn wapix-btn-red" type="button" (click)="exitWapix()"><fa-icon [icon]="faTimesCircle"></fa-icon> Salir</a>
-        <a *ngIf="nextQuestionReady" routerLink="../{{nextQuestionId}}" class="right-btn btn wapix-btn-light-blue" type="button">Sig. <fa-icon [icon]="faArrowCircleRight"></fa-icon></a>
+        <a routerLink="../../.." class="left-btn btn wapix-btn-red" type="button" (click)="exitWapix()"><fa-icon [icon]="faTimesCircle"></fa-icon> Salir</a>
+        <a *ngIf="nextQuestionReady" routerLink="../../{{nextQuestionId}}/{{resultId}}" class="right-btn btn wapix-btn-light-blue" type="button" (click)="nextQuestion()"> Sig. <fa-icon [icon]="faArrowCircleRight"></fa-icon></a>
         <h1 class="question-text">{{questionText}}</h1>
     </div>
 
@@ -15,14 +15,14 @@
 
     <div class="stats-div">
         <div class="participants-div">
-            <p class="participants-number">0</p>
+            <p class="participants-number">{{questionsAnswered}}</p>
             <p class="participants-text">respuestas</p>
         </div>
-        <img class="generic-image" src="https://i.pinimg.com/originals/43/27/18/432718c7cfaa8d59c1437132970cf47e.jpg">
+        <img class="generic-image" src="https://media4.giphy.com/media/de9GFdvjae4ISmDZse/giphy.gif">
     </div>
 
     <div class="answer-container">
-        <div *ngFor="let answer of answers" class="answer-wapix border" isCorrect="{{answer.isCorrect}}"><p>{{answer.answerText}}</p></div>
+        <div *ngFor="let answer of answers" class="answer-wapix" isCorrect="{{answer.isCorrect}}"><p>{{answer.answerText}}</p></div>
     </div>
 
 

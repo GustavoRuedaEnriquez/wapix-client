@@ -1,0 +1,23 @@
+<div *ngIf="!answerClicked" class="body-div-guest">
+    <h3>Seleccione una respuesta</h3>
+    <div class="grid answer-container">
+        <div *ngFor="let answer of answers" class="border sm-50 md-50 lg-50 answer-wapix" answerValue="{{answer.answerText}}" isCorrect="{{answer.isCorrect}}" (click)="clickedAnswer(answer)"></div>
+    </div>
+</div>
+
+<div *ngIf="answerClicked" class="background">
+    <div class="center">
+        <div class="loader container"></div>
+        <br>
+        <h4 *ngIf="rand == 1">¡Marck Zuckerberg en persona!</h4>
+        <h4 *ngIf="rand == 2">¡Velocidad luz! ¡Woow!</h4>
+        <h4 *ngIf="rand == 3">¡No te vas a tener que dar de baja!</h4>
+        <h4 *ngIf="rand == 4">El profe está orgulloso de tí.</h4>
+        <h4 *ngIf="rand == 5">Bájale un poco, intensito(a)...</h4>
+        <h4 *ngIf="rand == 6">Ay wow. AMAZING</h4>
+        <h4 *ngIf="rand == 7">Wazowski, ¡déjanos algo!</h4>
+        <h4 *ngIf="rand == 8">¡Qué talentoso!</h4>
+        <h4 *ngIf="rand == 9">¿Consideras que lo que respondiste está bien?</h4>
+        <h4 *ngIf="rand == 10">¿Te dicen Flash?</h4>
+    </div>
+</div>

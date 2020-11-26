@@ -1,8 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NavbarConfigService } from '../../globals/services/navbar-config.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WapixService } from '../../globals/services/wapix.service';
 import { SocketService } from '../../globals/services/socket.service';
+import { NavbarConfigService } from '../../globals/services/navbar-config.service';
 
 @Component({
   selector: 'app-guest-play',
@@ -18,7 +19,8 @@ export class GuestPlayComponent implements OnInit {
     private navbarConfigService:NavbarConfigService,
     private fb:FormBuilder,
     private wapixService:WapixService,
-    private socketService:SocketService) 
+    private socketService:SocketService,
+    private route:Router) 
   {
     this.navbarConfigService.hideNavbar();
   }
@@ -27,7 +29,7 @@ export class GuestPlayComponent implements OnInit {
     this.form = this.fb.group({
       code: ['', Validators.required],
       username: ['', Validators.required]
-    });     
+    });
   }
 
   onSubmit(): void {
@@ -40,12 +42,16 @@ export class GuestPlayComponent implements OnInit {
         */
         if(data.availability) {
           this.submitted = true;
-          /* Stablish socket connection */
+          /* Establish socket connection */
           this.socketService.connect();
           /* Connect to Wapix */
           this.socketService.emit('wapix-connect-player', {
             username : this.form.get('username').value,
             hostId : data.wapixInfo._id
+          });
+          /* Host starts the game */
+          this.socketService.on('wapix-start-game', (resultId) => {
+            this.route.navigate([`/guest-question/${this.form.get('username').value}/${resultId}`]);
           });
         }
         else {
