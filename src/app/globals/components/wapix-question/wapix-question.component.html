@@ -1,7 +1,7 @@
 <div class="body-div">
     <div class="header-part-div">
         <a routerLink="../../.." class="left-btn btn wapix-btn-red" type="button" (click)="exitWapix()"><fa-icon [icon]="faTimesCircle"></fa-icon> Salir</a>
-        <a *ngIf="nextQuestionReady" routerLink="../{{nextQuestionId}}" class="right-btn btn wapix-btn-light-blue" type="button">Sig. <fa-icon [icon]="faArrowCircleRight"></fa-icon></a>
+        <a *ngIf="nextQuestionReady" routerLink="../../{{nextQuestionId}}/{{resultId}}" class="right-btn btn wapix-btn-light-blue" type="button">Sig. <fa-icon [icon]="faArrowCircleRight"></fa-icon></a>
         <h1 class="question-text">{{questionText}}</h1>
     </div>
 
