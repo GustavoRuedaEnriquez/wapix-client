@@ -18,7 +18,7 @@ export class GuestQuestionComponent implements OnInit {
   data:any = {};
   question:any = {};
   answers:any = [];
-  clicked = false;
+  answerClicked = false;
   rand = 0;
 
   constructor(
@@ -36,17 +36,31 @@ export class GuestQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /* Event when the question's information is received */
     this.socketService.on('wapix-send-question', (data) => {
       this.data = data;
       this.questionNumber = parseInt(data.questionNumber);
       this.question = this.data.question;
       this.answers = this.question.answers;
     });
+    /* Event when the question's time runs out */
+    this.socketService.on('wapix-question-timeout', () => {
+      if( !this.answerClicked ) {
+        this.answerClicked = true;
+        this.rand = Math.floor((Math.random() * 10) + 1);
+      }
+    });
+    this.socketService.on('wapix-next-question', () => {
+      this.answerClicked = false;
+    });
   }
 
   clickedAnswer(answer):void {
-    /* TODO: Block the buttons */
-    this.clicked = true;
+    /* Emit answer selection to host */
+    this.socketService.emit('wapix-client-has-answered', this.data.wapixId);
+    
+    /* Block the buttons */
+    this.answerClicked = true;
     this.rand = Math.floor((Math.random() * 10) + 1);
     
     /* TODO: Calculate points */

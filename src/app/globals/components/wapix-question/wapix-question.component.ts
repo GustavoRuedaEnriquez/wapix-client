@@ -33,6 +33,7 @@ export class WapixQuestionComponent implements OnInit {
   seconds:number;
   secondsLeft:number;
   secondsRounded:number;
+  questionsAnswered:number = 0;
 
   isLoaded:boolean = false;
   nextQuestionReady:boolean = false;
@@ -78,7 +79,11 @@ export class WapixQuestionComponent implements OnInit {
             this.secondsLeft -= 0.01;
             this.secondsRounded = Math.trunc(this.secondsLeft);
           } else {
+            /* Block answers submission */
+            this.socketService.emit('wapix-timeout', this.wapixId);
+            /* Clear the timeout */
             clearInterval(this.interval);
+            /* Unlock next question */
             if(parseInt(this.questionId) < this.totalQuestions) {
               this.nextQuestionReady = true
             }
@@ -111,12 +116,18 @@ export class WapixQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.socketService.on('wapix-update-answers-number', () => {
+      this.questionsAnswered += 1;
+    });
   }
 
   exitWapix():void {
     this.navbarConfigService.showNavbar();
     clearInterval(this.interval);
+  }
+
+  nextQuestion():void {
+    this.socketService.emit('wapix-host-next-question', this.wapixId);
   }
 
 }
