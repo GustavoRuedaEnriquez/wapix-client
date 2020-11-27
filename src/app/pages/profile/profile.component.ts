@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { empty } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { UserService } from 'src/app/globals/services/user.service';
 import { MustMatch } from 'src/app/globals/validators/password-match.validator';
@@ -19,9 +20,17 @@ export class ProfileComponent implements OnInit {
   user: any;
   name:String;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private authService: AuthService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private authService: AuthService,
+    private titleService: Title) 
+  {
+
+  }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Wapix | Perfil');
 
     this.editForm = this.formBuilder.group({
       username: ['', Validators.pattern('[(!/^\s/)]*[a-zA-Z ]*[(!/^\s/)]*') ],

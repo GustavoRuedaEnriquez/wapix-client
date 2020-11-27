@@ -2,7 +2,7 @@ import { faUser,
         faEnvelope,
         faLock,
         faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/globals/services/user.service';
@@ -25,18 +25,21 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private userService:UserService
+    private userService:UserService,
+    private titleService: Title
     ) { }
 
   ngOnInit() {
-      this.registerForm = this.formBuilder.group({
+    this.titleService.setTitle('Wapix | Perfil');
+     this.registerForm = this.formBuilder.group({
           username: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
           password: ['', [Validators.required, Validators.minLength(6)]],
           confirmPassword: ['', Validators.required]
-      }, {
-          validator: MustMatch('password', 'confirmPassword')
-      });
+    },
+    {
+      validator: MustMatch('password', 'confirmPassword')
+    });
   }
 
   // convenience getter for easy access to form fields

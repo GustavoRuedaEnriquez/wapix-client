@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { faSleigh } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { UserService } from 'src/app/globals/services/user.service';
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   logged = false;
 
   constructor(
+    private titleService: Title,
     private formBuilder: FormBuilder, 
     private userService: UserService, 
     private router: Router,
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Wapix | Iniciar Sesión');
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]

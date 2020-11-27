@@ -1,6 +1,7 @@
 /* Font Awesome icons */
 import { faGamepad, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { WapixService } from '../../globals/services/wapix.service';
@@ -27,6 +28,7 @@ export class PlayWapixComponent implements OnInit {
 
   constructor(
     private activatedRoute:ActivatedRoute,
+    private titleService: Title,
     private wapixService:WapixService,
     private resultsService:ResultsService,
     private authService:AuthService,
@@ -40,6 +42,8 @@ export class PlayWapixComponent implements OnInit {
 
   
   ngOnInit(): void {
+    this.titleService.setTitle('Wapix | Jugar');
+    /* Obtain the token from the session */
     let token:string = this.authService.getToken();
     this.wapixService.activateWapix(this.wapixId, token)
       .then( activated => {

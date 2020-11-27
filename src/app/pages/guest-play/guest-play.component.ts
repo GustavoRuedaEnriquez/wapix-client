@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WapixService } from '../../globals/services/wapix.service';
@@ -18,6 +19,7 @@ export class GuestPlayComponent implements OnInit {
   constructor(
     private navbarConfigService:NavbarConfigService,
     private fb:FormBuilder,
+    private titleService: Title,
     private wapixService:WapixService,
     private socketService:SocketService,
     private route:Router) 
@@ -26,6 +28,7 @@ export class GuestPlayComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Wapix | Unirse');
     this.form = this.fb.group({
       code: ['', Validators.required],
       username: ['', Validators.required]

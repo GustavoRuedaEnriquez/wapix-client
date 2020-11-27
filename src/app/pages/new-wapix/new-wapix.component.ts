@@ -1,7 +1,5 @@
-/* Required modules */
 import { Component, OnInit } from '@angular/core';
-
-/* Required components */
+import { Title } from '@angular/platform-browser';
 import { WapixService } from '../../globals/services/wapix.service'
 import { AuthService } from 'src/app/globals/services/auth.service';
 
@@ -14,9 +12,11 @@ export class NewWapixComponent implements OnInit {
 
   wapixNewObject:any = {}
 
-  constructor(private wapixService:WapixService, private authService: AuthService) {  }
+  constructor(private wapixService:WapixService, private titleService: Title, private authService: AuthService) {  }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+    this.titleService.setTitle('Wapix | Nuevo Wapix');
+  }
 
   saveWapix(wapix:any):void {
     /* Obtain the token and the email from the session */

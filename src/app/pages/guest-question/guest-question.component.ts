@@ -1,4 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { SocketService } from '../../globals/services/socket.service';
@@ -25,6 +26,7 @@ export class GuestQuestionComponent implements OnInit {
     private navbarConfigService:NavbarConfigService,
     private activatedRoute:ActivatedRoute,
     private route:Router,
+    private titleService: Title,
     private socketService:SocketService,
     private resultsService:ResultsService,
     private authService:AuthService)
@@ -37,6 +39,7 @@ export class GuestQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Wapix | Partida');
     /* Event when the question's information is received */
     this.socketService.on('wapix-send-question', (data) => {
       this.data = data;

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-
 import { WapixService } from '../../globals/services/wapix.service';
-
 import { AuthService } from 'src/app/globals/services/auth.service';
 
 @Component({
@@ -16,13 +14,20 @@ export class EditWapixComponent implements OnInit {
   wapixId:string;
   wapixObject:any = {}
 
-  constructor(private wapixService:WapixService, private activatedRoute:ActivatedRoute, private authService:AuthService) {
+  constructor(
+    private wapixService:WapixService,
+    private titleService: Title,
+    private activatedRoute:ActivatedRoute,
+    private authService:AuthService)
+  {
     this.activatedRoute.params.subscribe( params => {
       this.wapixId = params.id;
     })
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Wapix | Editar Wapix');
+
     /* Obtain the token and from the session. */
     let token:string = this.authService.getToken();
 

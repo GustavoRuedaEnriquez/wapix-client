@@ -1,11 +1,10 @@
 /* Font-awesome Icons */
 import { faSearchPlus, faSearch, faSurprise } from '@fortawesome/free-solid-svg-icons';
-
-/* imports */
 import { Component, OnInit } from '@angular/core';
 import { WapixService } from 'src/app/globals/services/wapix.service';
 import { ReportService } from 'src/app/globals/services/report.service';
 import { AuthService } from 'src/app/globals/services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,9 +22,14 @@ export class ReportWapixComponent implements OnInit {
   report:Array<any> = [];
 
 
-  constructor(private wapixService:WapixService, private reportService:ReportService, private authService: AuthService) { }
+  constructor(
+    private wapixService:WapixService,
+    private reportService:ReportService,
+    private authService:AuthService,
+    private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Wapix | Reportes');
     /* Obtain the token and the email from the session */
    let email:string = this.authService.getEmail();
    let token:string = this.authService.getToken();
@@ -41,7 +45,6 @@ export class ReportWapixComponent implements OnInit {
   }
 
   getResultByWapixId(){
-
     let wapix:any = document.getElementById('selectWapix');
     let id = wapix.options[wapix.selectedIndex].value;
     let token:string = this.authService.getToken();

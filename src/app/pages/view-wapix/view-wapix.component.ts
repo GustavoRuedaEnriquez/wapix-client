@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { WapixService } from '../../globals/services/wapix.service';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view-wapix',
@@ -20,9 +21,14 @@ export class ViewWapixComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faSurprise = faSurprise;
 
-  constructor(private wapixService:WapixService, private authService:AuthService, private router:Router) { }
+  constructor(
+    private wapixService:WapixService,
+    private authService:AuthService,
+    private router:Router,
+    private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Wapix | Mis Wapix');
     /* Obtain the token and the email from the session */
     let email:string = this.authService.getEmail();
     let token:string = this.authService.getToken();
