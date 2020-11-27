@@ -38,7 +38,7 @@ import { PodiumWapixComponent } from './pages/podium-wapix/podium-wapix.componen
     NewWapixComponent,
     EditWapixComponent,
     PlayWapixComponent,
-    WapixQuestionComponent,
+    WapixQuestionComponent, 
     GuestPlayComponent,
     LoginComponent,
     RegisterComponent,
