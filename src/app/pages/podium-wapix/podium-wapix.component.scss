@@ -1,0 +1,64 @@
+div.body-div-podium {
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    background: #077C9A;
+    color: white;
+}
+
+
+img {
+    width:80px;
+}
+img.left {
+    position: absolute;
+    left: 0;
+    animation: head-movement-left 3s infinite;
+}
+img.right {
+    position: absolute;
+    right: 0;
+    animation: head-movement-right 3s infinite;
+}
+@keyframes head-movement-left {
+    0%   {-webkit-transform: rotate(0deg);}
+    33%  {-webkit-transform: rotate(45deg);}
+    66%  {-webkit-transform: rotate(-45deg);}
+    100% {-webkit-transform: rotate(0deg);}
+}
+
+@keyframes head-movement-right {
+    0%   {-webkit-transform: rotate(0deg);}
+    33%  {-webkit-transform: rotate(-45deg);}
+    66%  {-webkit-transform: rotate(45deg);}
+    100% {-webkit-transform: rotate(0deg);}
+}
+
+
+#header-div {
+    position: relative;
+    width: 500px;
+    margin: auto;
+    margin-bottom: 50px;
+    padding-top: 50px;
+    border-color: white;
+}
+
+#podium-title {
+    font-size: 3.5em;
+}
+
+#list-div {
+    width: 400px;
+    margin: auto;
+    font-size: 2em;
+    text-align: center;
+}
+
+#message-div {
+    margin-top: 50px ;
+}
+
+.btn {
+    font-size: 1.5em;
+}

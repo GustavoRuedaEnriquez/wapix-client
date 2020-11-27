@@ -26,6 +26,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { environment } from '../environments/environment';
+import { PodiumWapixComponent } from './pages/podium-wapix/podium-wapix.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { environment } from '../environments/environment';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    GuestQuestionComponent
+    GuestQuestionComponent,
+    PodiumWapixComponent
   ],
   imports: [
     BrowserModule,

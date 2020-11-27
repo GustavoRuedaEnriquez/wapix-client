@@ -1,6 +1,6 @@
-import { faTimesCircle, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, faArrowCircleRight, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { WapixService } from '../../../globals/services/wapix.service';
 import { SocketService } from 'src/app/globals/services/socket.service';
@@ -16,6 +16,7 @@ export class WapixQuestionComponent implements OnInit {
 
   faTimesCircle = faTimesCircle
   faArrowCircleRight = faArrowCircleRight
+  faCheckCircle = faCheckCircle
 
   wapixId:string;
   resultId:string;
@@ -37,6 +38,7 @@ export class WapixQuestionComponent implements OnInit {
 
   isLoaded:boolean = false;
   nextQuestionReady:boolean = false;
+  displayCorrect = false;
 
   constructor(
     private wapixService:WapixService,
@@ -44,7 +46,8 @@ export class WapixQuestionComponent implements OnInit {
     private activatedRoute:ActivatedRoute,
     private authService:AuthService,
     private navbarConfigService:NavbarConfigService,
-    private socketService:SocketService
+    private socketService:SocketService,
+    private route:Router
   ) { 
     this.navbarConfigService.hideNavbar();
     this.activatedRoute.params.subscribe( params => {
@@ -79,12 +82,13 @@ export class WapixQuestionComponent implements OnInit {
             this.secondsLeft -= 0.01;
             this.secondsRounded = Math.trunc(this.secondsLeft);
           } else {
+            this.displayCorrect = true;
             /* Block answers submission */
             this.socketService.emit('wapix-timeout', this.wapixId);
             /* Clear the timeout */
             clearInterval(this.interval);
             /* Unlock next question */
-            if(parseInt(this.questionId) < this.totalQuestions) {
+            if(parseInt(this.questionId) <= this.totalQuestions) {
               this.nextQuestionReady = true
             }
           }
@@ -128,7 +132,25 @@ export class WapixQuestionComponent implements OnInit {
   }
 
   nextQuestion():void {
-    this.socketService.emit('wapix-host-next-question', this.wapixId);
+    this.displayCorrect = false;
+    this.questionsAnswered = 0;
+    if(parseInt(this.questionId) == this.totalQuestions) {
+      /* Disable Wapix */
+      let token:string = this.authService.getToken();
+      this.wapixService.deactivateWapix(this.wapixId, token)
+       .then((deactivated) => {
+          /* Notify the Wapix has ended */
+          this.socketService.emit('wapix-host-completes-game', this.wapixId);
+          this.route.navigate(['/podium']);
+       })
+       .catch( err => {
+         console.error(err);
+         alert('Ocurrió un problema a la hora de desactivar el Wapix.');
+       });
+    } else {
+      this.socketService.emit('wapix-host-next-question', this.wapixId);  
+      this.route.navigate([`/my-wapix/play/${this.wapixId}/question/${this.nextQuestionId}/${this.resultId}`]);
+    }  
   }
 
 }

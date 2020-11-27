@@ -1,0 +1,22 @@
+<div class="body-div-podium">
+    <div id="header-div">
+        <img class="left" src="/assets/images/Wapi-Left.png" alt="Wapi">
+        <img class="right" src="/assets/images/Wapi-Right.png" alt="Wapi">
+        <h1 id="podium-title">Ganadores</h1>
+    </div>
+
+    <div id="list-div">
+        <ol>
+            <li *ngFor="let player of topFivePlayers">{{player.username}} - {{player.total}}</li>
+        </ol>
+    </div>
+
+    <div id="message-div">
+        <h2>Si no te ves aquí, no te fue tan bien jeje.</h2>
+    </div>
+
+    <div id="message-div">
+        <a routerLink="/my-wapix" class="btn wapix-btn-red" type="button" (click)="exitWapix()">Salir</a>
+    </div>
+    
+</div>

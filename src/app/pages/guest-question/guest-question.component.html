@@ -1,11 +1,11 @@
-<div *ngIf="!answerClicked" class="body-div-guest">
+<div *ngIf="!answerClicked && !showPoints" class="body-div-guest">
     <h3>Seleccione una respuesta</h3>
     <div class="grid answer-container">
         <div *ngFor="let answer of answers" class="border sm-50 md-50 lg-50 answer-wapix" answerValue="{{answer.answerText}}" isCorrect="{{answer.isCorrect}}" (click)="clickedAnswer(answer)"></div>
     </div>
 </div>
 
-<div *ngIf="answerClicked" class="background">
+<div *ngIf="answerClicked && !showPoints" class="background">
     <div class="center">
         <div class="loader container"></div>
         <br>
@@ -19,5 +19,13 @@
         <h4 *ngIf="rand == 8">¡Qué talentoso!</h4>
         <h4 *ngIf="rand == 9">¿Consideras que lo que respondiste está bien?</h4>
         <h4 *ngIf="rand == 10">¿Te dicen Flash?</h4>
+    </div>
+</div>
+
+<div *ngIf="!answerClicked && showPoints" class="background">
+    <div class="center">
+        <h1>Puntuación total:</h1>
+        <br>
+        <h1>{{totalPointsGained}}</h1>
     </div>
 </div>

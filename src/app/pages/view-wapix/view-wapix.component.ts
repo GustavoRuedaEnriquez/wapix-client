@@ -4,6 +4,7 @@ import { WapixService } from '../../globals/services/wapix.service';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { NavbarConfigService } from '../../globals/services/navbar-config.service';
 
 @Component({
   selector: 'app-view-wapix',
@@ -25,7 +26,11 @@ export class ViewWapixComponent implements OnInit {
     private wapixService:WapixService,
     private authService:AuthService,
     private router:Router,
-    private titleService: Title) { }
+    private titleService: Title,
+    private navbarConfigService:NavbarConfigService)
+  {
+    this.navbarConfigService.showNavbar();
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Wapix | Mis Wapix');
