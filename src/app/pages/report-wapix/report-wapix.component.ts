@@ -44,6 +44,7 @@ export class ReportWapixComponent implements OnInit {
 
   }
 
+  /* After a wapix it´s chosen it shows the diferent results of the wapix */
   getResultByWapixId() {
 
     this.btn = false;
@@ -60,8 +61,9 @@ export class ReportWapixComponent implements OnInit {
       });
   }
 
+  /* When push the btn send the result to the xlsx export service */
   exportResults(result:any) {
-    console.log('Descargando... ', result);
+    this.xslxExportService.xlsxExportToPC(result);
   }
 
 }
