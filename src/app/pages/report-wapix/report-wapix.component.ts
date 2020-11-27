@@ -1,13 +1,13 @@
 /* Font-awesome Icons */
-import { faSearchPlus, faSearch, faSurprise, faFileExcel } from '@fortawesome/free-solid-svg-icons';
+import { faSearchPlus, faSearch, faSurprise, faFileExcel, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 /* imports */
 import { Component, OnInit } from '@angular/core';
 import { WapixService } from 'src/app/globals/services/wapix.service';
-import { ReportService } from 'src/app/globals/services/report.service';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { XslxExportService } from 'src/app/globals/services/xslx-export.service';
+import { ResultsService } from 'src/app/globals/services/results.service';
 
 @Component({
   selector: 'app-report-wapix',
@@ -20,6 +20,7 @@ export class ReportWapixComponent implements OnInit {
   faSearch = faSearch;
   faSurprise = faSurprise;
   faFileExcel = faFileExcel;
+  faTrashAlt = faTrashAlt;
   btn: Boolean = true;
   isLoading: Boolean = true;
 
@@ -29,7 +30,7 @@ export class ReportWapixComponent implements OnInit {
 
   constructor(
     private wapixService:WapixService,
-    private reportService:ReportService,
+    private resultsService:ResultsService,
     private authService:AuthService,
     private titleService: Title,
     private xslxExportService: XslxExportService) { }
@@ -60,9 +61,9 @@ export class ReportWapixComponent implements OnInit {
     let name: string = wapix.options[wapix.selectedIndex].text;
     let token: string = this.authService.getToken();
 
-    this.reportService.getResultByWapixId(id, token)
+    this.resultsService.getResultByWapixId(id, token)
       .then(data => {
-        this.report = data.result;
+        this.report = data.result.reverse();
         console.log('Results obtained from wapix ' + name + ', id: ' + id);
       });
   }
@@ -70,6 +71,20 @@ export class ReportWapixComponent implements OnInit {
   /* When push the btn send the result to the xlsx export service */
   exportResults(result:any) {
     this.xslxExportService.xlsxExportToPC(result);
+  }
+
+  /* When push the result it´s deleted */
+  deleteResult(wapixId:string):void {
+    /* Obtain the token and from the session. */
+    let token:string = this.authService.getToken();
+    this.resultsService.deleteResultFromId(wapixId, token)
+      .then( data => {
+        this.getResultByWapixId();
+      })
+      .catch( err => {
+        console.error(err);
+        alert("Sucedió un error al eliminar el wapix.");
+      })
   }
 
 }

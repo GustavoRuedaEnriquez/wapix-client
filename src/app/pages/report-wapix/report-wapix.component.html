@@ -38,11 +38,11 @@
     <div *ngIf="report.length != 0" id="wapix-list-div">
       <div class="wapix-list-element-div" *ngFor="let result of report">
         <div class="wapix-list-details-div">
-            <h2>Fecha: {{result.date}}</h2>
-            <div class="wapix-details-div">
-                <h4>Preguntas: {{result.result.length}}</h4>
-                <h4>Jugadores: {{result.playersJoined.length}}</h4>
-            </div>
+          <h2>Fecha: {{result.date}}</h2>
+          <div class="wapix-details-div">
+            <h4>Preguntas: {{result.result.length}}</h4>
+            <h4>Jugadores: {{result.playersJoined.length}}</h4>
+          </div>
         </div>
 
         <div class="wapix-list-buttons-div">
@@ -50,9 +50,12 @@
             <fa-icon class="wapix-fa-icon" [icon]="faFileExcel"></fa-icon>
             <p class="wapix-btn-title">Descarga</p>
           </a>
+          <a (click)="deleteResult(result._id)" class="btn wapix-btn-red action-btn">
+            <fa-icon class="wapix-fa-icon" [icon]="faTrashAlt"></fa-icon>
+            <p class="wapix-btn-title">Borrar</p>
+          </a>
         </div>
       </div>
     </div>
-
   </div>
 </div>

@@ -34,5 +34,20 @@ export class ResultsService {
     return this.httpClient.patch(url,submission,{ headers : requestHeaders }).toPromise();
   }
 
+  getResultByWapixId(id:string, token:string):Promise<any> {
+    let url:string = environment.apiUrl + `result/wapixId/${id}`;
+    let requestHeaders = {
+      'Authorization' : `${token}`
+    }
+    return this.httpClient.get(url,{ headers : requestHeaders }).toPromise();
+  }
+
+  deleteResultFromId(id:string, token:string):Promise<any> {
+    let url:string = environment.apiUrl + `result/${id}`;
+    let requestHeaders = {
+      'Authorization' : `${token}`
+    }
+    return this.httpClient.delete(url,{ headers : requestHeaders }).toPromise();
+  }
 
 }
