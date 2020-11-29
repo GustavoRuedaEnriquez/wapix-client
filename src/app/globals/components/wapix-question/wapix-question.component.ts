@@ -40,6 +40,10 @@ export class WapixQuestionComponent implements OnInit {
   nextQuestionReady:boolean = false;
   displayCorrect = false;
 
+  themeSound = new Audio();
+  boopSound = new Audio();
+  bellSound = new Audio();
+
   constructor(
     private wapixService:WapixService,
     private resultsService:ResultsService,
@@ -48,7 +52,17 @@ export class WapixQuestionComponent implements OnInit {
     private navbarConfigService:NavbarConfigService,
     private socketService:SocketService,
     private route:Router
-  ) { 
+  ) {
+    /* Load sounds */
+    this.bellSound.src = '/assets/sounds/boxing bell.mp3';
+    this.bellSound.load();
+    this.boopSound.src = '/assets/sounds/boop.mp3';
+    this.boopSound.load();
+    this.themeSound.src = '/assets/sounds/nokia.mp3';
+    this.themeSound.loop = true;
+    this.themeSound.load();
+    this.themeSound.play();
+
     this.navbarConfigService.hideNavbar();
     this.activatedRoute.params.subscribe( params => {
       this.isLoaded = false;
@@ -82,6 +96,8 @@ export class WapixQuestionComponent implements OnInit {
             this.secondsLeft -= 0.01;
             this.secondsRounded = Math.trunc(this.secondsLeft);
           } else {
+            this.bellSound.play();
+            this.themeSound.pause();
             this.displayCorrect = true;
             /* Block answers submission */
             this.socketService.emit('wapix-timeout', this.wapixId);
@@ -121,6 +137,7 @@ export class WapixQuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.socketService.on('wapix-update-answers-number', () => {
+      this.boopSound.play();
       this.questionsAnswered += 1;
     });
   }
@@ -128,6 +145,7 @@ export class WapixQuestionComponent implements OnInit {
   exitWapix():void {
     this.socketService.emit('wapix-host-ends-game', this.wapixId);
     this.navbarConfigService.showNavbar();
+    this.themeSound.pause();
     clearInterval(this.interval);
   }
 
