@@ -169,6 +169,11 @@ h6 {
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
   }
+
+  .image-upload > input
+{
+    display: none;
+}
   
   /* Safari */
   @-webkit-keyframes spin {

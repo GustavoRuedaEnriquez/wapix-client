@@ -13,6 +13,7 @@ import { MustMatch } from 'src/app/globals/validators/password-match.validator';
 export class ProfileComponent implements OnInit {
 
   editForm: FormGroup;
+  photoForm: FormGroup;
   submitted: boolean = false;
   logged: boolean = false;
   isLoading: Boolean = true;
@@ -40,6 +41,10 @@ export class ProfileComponent implements OnInit {
       validator: MustMatch('password', 'confirmPassword')
     });
 
+    this.photoForm = this.formBuilder.group({
+      image: ''
+    });
+
     this.getUserInfo();
 
   }
@@ -65,7 +70,28 @@ export class ProfileComponent implements OnInit {
   editBtn(): void {
     this.edit = !this.edit;
     this.submitted = false;
+    this.photoForm.value.image = '';
     this.getUserInfo();
+  }
+
+  userEditPhoto(): void {
+
+    /* Obtain the token from the session */
+    let token:string = this.authService.getToken();
+
+    console.log(this.photoForm.value);
+
+    this.userService.photoUpload(this.photoForm.value.image, token)
+    .then(data => {
+      console.log(data);
+      this.editBtn();
+    })
+    .catch(err => {
+      this.logged = false;
+      console.log("No se subio la foto");
+    });
+
+
   }
 
   userEdit(): void {

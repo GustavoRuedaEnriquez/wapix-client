@@ -24,8 +24,17 @@ export class XslxExportService {
       /* Adds the diferent questions and points gained, also calculate the total of points gained */
       for (let j = 0; j < data.result.length; j++) {
 
-        jsonObj[j + '- ' + data.result[j].questionText] = data.result[j].submissions[i].answerSent + '';
-        jsonObj[j + '- ' + "Puntos"] = data.result[j].submissions[i].pointsGained + '';
+        
+
+        let k;
+
+        for (k = 0; k < data.result[j].submissions.length; k++) {
+          if(data.result[j].submissions[k].username == data.playersJoined[i]) break;
+        }
+
+        jsonObj[j + '- ' + data.result[j].questionText] = data.result[j].submissions[k].answerSent + '';
+        jsonObj[j + '- ' + "Puntos"] = data.result[j].submissions[k].pointsGained + '';
+
         totalPoints = totalPoints + data.result[j].submissions[i].pointsGained;
       }
 
