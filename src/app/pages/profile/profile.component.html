@@ -1,7 +1,7 @@
 <div class="body-div">
 
   <h1 id="title">Mi Perfil</h1>
-  
+
 
   <ng-template class="text-center" [ngIf]="isLoading" [ngIfElse]="loaded">
     <div class="loader container"></div>
@@ -15,10 +15,27 @@
             <div class="card user-card-full">
               <div class="row m-l-0 m-r-0">
                 <div class="col-sm-4 bg-c-lite-green user-profile">
+
                   <div class="card-block text-center text-white">
-                    <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png"
-                        class="img-radius" alt="User-Profile-Image"> </div>
-                    <h6 class="f-w-600">{{user.username}}</h6>
+    
+                    <form [formGroup]="photoForm" (ngSubmit)="userEditPhoto()" enctype="multipart/form-data">
+                      <div class="image-upload">
+                        <label for="file-input">
+                          <div class="m-b-25">
+                            <ng-template [ngIf]="user.image" [ngIfElse]="noImg">
+                              <img src="user.image"class="img-radius" alt="User-Profile-Image"> 
+                            </ng-template>
+                            <ng-template #noImg>
+                              <img src="https://img.icons8.com/bubbles/100/000000/user.png"class="img-radius" alt="User-Profile-Image"> 
+                            </ng-template>
+                          </div>
+                        </label>
+                        <input id="file-input" type="file" formControlName="image" class="form-control" /> 
+                      </div>
+                      <h6 class="f-w-600">{{user.username}}</h6>
+                      <br>
+                      <button *ngIf="edit" [disabled]="!(photoForm.value.image != '')" class="btn wapix-btn-yellow">Click en tu foto para modificar</button>
+                    </form>
                   </div>
                 </div>
                 <div class="col-sm-8">
@@ -34,7 +51,8 @@
                           <div class="col-sm-10">
                             <div class="form-group">
                               <label>Nombre de usuario</label>
-                              <input type="text" formControlName="username" ng-pattern="/[a-zA-Z0-9^ ]/" placeholder="{{user.username}}" class="form-control"
+                              <input type="text" formControlName="username" ng-pattern="/[a-zA-Z0-9^ ]/"
+                                placeholder="{{user.username}}" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                               <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                                 <div *ngIf="f.username.errors.required">El nombre de usuario es requerido</div>
