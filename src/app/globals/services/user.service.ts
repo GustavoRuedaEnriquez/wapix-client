@@ -43,10 +43,13 @@ export class UserService {
     return this.httpClient.patch(url, user, { headers : requestHeaders}).toPromise();
   }
 
-  photoUpload(image:any):Promise<any> {
+  photoUpload(image:any, token:string):Promise<any> {
     let url:string = environment.apiUrl + `upload`;
 
-    return this.httpClient.post(url,image).toPromise();
+    let requestHeaders = {
+      'Authorization' : `${token}`
+    }
+    return this.httpClient.post(url, image, { headers : requestHeaders}).toPromise();
   }
 
 }

@@ -76,14 +76,19 @@ export class ProfileComponent implements OnInit {
 
   userEditPhoto(): void {
 
-    this.userService.photoUpload(this.photoForm.value.image)
+    /* Obtain the token from the session */
+    let token:string = this.authService.getToken();
+
+    console.log(this.photoForm.value);
+
+    this.userService.photoUpload(this.photoForm.value.image, token)
     .then(data => {
       console.log(data);
       this.editBtn();
     })
     .catch(err => {
       this.logged = false;
-      console.log("Faltan datos");
+      console.log("No se subio la foto");
     });
 
 
