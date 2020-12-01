@@ -11,8 +11,8 @@
     "postinstall": "ng build --prod"
   },
   "engines": {
-    "node":"12.x",
-    "npm":"6.x"
+    "node": "12.x",
+    "npm": "6.x"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +32,7 @@
     "@popperjs/core": "^2.5.4",
     "angularx-social-login": "^3.4.1",
     "bootstrap": "^4.5.3",
+    "express": "^4.17.1",
     "jquery": "^3.5.1",
     "rxjs": "~6.6.0",
     "socket.io-client": "^3.0.3",
