@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { AuthService } from 'src/app/globals/services/auth.service';
 import { UserService } from 'src/app/globals/services/user.service';
 import { MustMatch } from 'src/app/globals/validators/password-match.validator';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,20 +14,18 @@ import { MustMatch } from 'src/app/globals/validators/password-match.validator';
 export class ProfileComponent implements OnInit {
 
   editForm: FormGroup;
-  photoForm: FormGroup;
   submitted: boolean = false;
   logged: boolean = false;
   isLoading: Boolean = true;
   edit: boolean = false;
   user: any;
-  name:String;
+  name: String;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private authService: AuthService,
-    private titleService: Title) 
-  {
+    private titleService: Title) {
 
   }
 
@@ -34,34 +33,30 @@ export class ProfileComponent implements OnInit {
     this.titleService.setTitle('Wapix | Perfil');
 
     this.editForm = this.formBuilder.group({
-      username: ['', Validators.pattern('[(!/^\s/)]*[a-zA-Z ]*[(!/^\s/)]*') ],
+      username: ['', Validators.pattern('[(!/^\s/)]*[a-zA-Z ]*[(!/^\s/)]*')],
       password: ['', Validators.minLength(6)],
       confirmPassword: ''
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });
 
-    this.photoForm = this.formBuilder.group({
-      image: ''
-    });
-
     this.getUserInfo();
 
   }
-  
-  getUserInfo():void{
-     /* Obtain the token and the email from the session */
-   let email:string = this.authService.getEmail(); 
-   let token:string = this.authService.getToken();
 
-   this.userService.getUser(email, token)
-     .then(data => {
-       this.isLoading = false;
-       this.user = data.user[0];
-     })
-     .catch(err => {
-       console.error(err);
-     });
+  getUserInfo(): void {
+    /* Obtain the token and the email from the session */
+    let email: string = this.authService.getEmail();
+    let token: string = this.authService.getToken();
+
+    this.userService.getUser(email, token)
+      .then(data => {
+        this.isLoading = false;
+        this.user = data.user[0];
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   // convenience getter for easy access to form fields
@@ -70,26 +65,45 @@ export class ProfileComponent implements OnInit {
   editBtn(): void {
     this.edit = !this.edit;
     this.submitted = false;
-    this.photoForm.value.image = '';
     this.getUserInfo();
   }
 
-  userEditPhoto(): void {
+  userEditPhoto(event: any): void {
 
     /* Obtain the token from the session */
-    let token:string = this.authService.getToken();
+    let token: string = this.authService.getToken();
 
-    console.log(this.photoForm.value);
+    const file = event.target.files[0];
 
-    this.userService.photoUpload(this.photoForm.value.image, token)
-    .then(data => {
-      console.log(data);
-      this.editBtn();
-    })
-    .catch(err => {
-      this.logged = false;
-      console.log("No se subio la foto");
-    });
+    console.log(file);
+
+
+    let fd = new FormData();
+
+    fd.append('image', file);
+
+    this.userService.photoUpload(fd, token)
+      .then(data => {
+
+        let photo = {
+          "image": data.urlImage
+        }
+        
+        console.log(data);
+        this.userService.updatetUser(photo, this.user.email, token)
+          .then(data => {
+            console.log(data);
+            this.editBtn();
+          })
+          .catch(err => {
+            this.logged = false;
+            console.log("Faltan datos");
+          });
+      })
+      .catch(err => {
+        this.logged = false;
+        console.log("No se subio la foto");
+      });
 
 
   }
@@ -106,10 +120,10 @@ export class ProfileComponent implements OnInit {
     }
 
     /* Obtain the token from the session */
-    let token:string = this.authService.getToken();
+    let token: string = this.authService.getToken();
 
     if (this.editForm.valid && this.name && this.editForm.value.password) {
-            
+
       this.logged = true;
 
       this.userService.updatetUser(this.editForm.value, this.user.email, token)
@@ -122,11 +136,11 @@ export class ProfileComponent implements OnInit {
           console.log("Faltan datos");
         });
 
-        this.getUserInfo();
+      this.getUserInfo();
       //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editForm.value))
 
     } else if (this.editForm.valid && this.editForm.value.password && !this.name) {
-            
+
       this.logged = true;
 
       this.editForm.value.username = this.user.username;
@@ -141,11 +155,11 @@ export class ProfileComponent implements OnInit {
           console.log("Faltan datos");
         });
 
-        this.getUserInfo();
+      this.getUserInfo();
 
 
     } else if (this.editForm.valid && this.name && !this.editForm.value.password) {
-      
+
       this.logged = true;
 
       this.userService.updatetUser(userObj, this.user.email, token)
@@ -158,7 +172,7 @@ export class ProfileComponent implements OnInit {
           console.log("Faltan datos");
         });
 
-        this.getUserInfo();
+      this.getUserInfo();
 
     } else {
       // stop here if form is invalid
