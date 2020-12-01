@@ -66,7 +66,7 @@ export class GuestQuestionComponent implements OnInit {
         };
         let token:string = this.authService.getToken();
         /* Store answer in the database */
-        this.resultsService.addSubmissionToQuestionOnResult(data, this.resultId, token)
+        this.resultsService.addSubmissionToQuestionOnResult(data, this.resultId)
          .catch( err => {
           console.error(err);
           alert("Sucedió un error a la hora de guardar su respuesta.");
@@ -142,7 +142,7 @@ export class GuestQuestionComponent implements OnInit {
     /* Obtain the token and from the session */
     let token:string = this.authService.getToken();
     /* Store answer in the database */
-    this.resultsService.addSubmissionToQuestionOnResult(data, this.resultId, token)
+    this.resultsService.addSubmissionToQuestionOnResult(data, this.resultId)
      .catch( err => {
       console.error(err);
       alert(`Sucedió un error a la hora de guardar su respuesta. Error ${JSON.stringify(err)}`);

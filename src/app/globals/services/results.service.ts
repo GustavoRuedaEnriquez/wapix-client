@@ -26,12 +26,9 @@ export class ResultsService {
     return this.httpClient.patch(url,question,{ headers : requestHeaders }).toPromise();
   }
 
-  addSubmissionToQuestionOnResult(submission:any, resultId:any, token:string):Promise<any> {
+  addSubmissionToQuestionOnResult(submission:any, resultId:any):Promise<any> {
     let url:string = environment.apiUrl + `result-add-submission/${resultId}`;
-    let requestHeaders = {
-      'Authorization' : `${token}`
-    }
-    return this.httpClient.patch(url,submission,{ headers : requestHeaders }).toPromise();
+    return this.httpClient.patch(url,submission).toPromise();
   }
 
   getResultByWapixId(id:string, token:string):Promise<any> {
