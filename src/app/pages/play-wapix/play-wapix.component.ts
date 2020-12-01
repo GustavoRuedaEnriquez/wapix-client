@@ -79,6 +79,7 @@ export class PlayWapixComponent implements OnInit {
   exitClick():void {
     /* Obtain the token and from the session */
     let token:string = this.authService.getToken();
+    this.socketService.emit('wapix-host-ends-game', this.wapixId);
     this.socketService.disconnect();
     this.wapixService.deactivateWapix(this.wapixId, token)
       .catch( err => {
