@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ViewWapixComponent } from './pages/view-wapix/view-wapix.component';
 import { NewWapixComponent } from './pages/new-wapix/new-wapix.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EditWapixComponent } from './pages/edit-wapix/edit-wapix.component';
 import { GuestPlayComponent } from './pages/guest-play/guest-play.component';
 import { GuestQuestionComponent } from './pages/guest-question/guest-question.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'login', component : LoginComponent, canActivate: [UnAuthGuard]},
   { path: 'register', component : RegisterComponent, canActivate: [UnAuthGuard]},
   { path: 'profile', component : ProfileComponent, canActivate: [AuthGuard] },
+  { path: '**', component : NotFoundComponent }
 ];
 
 @NgModule({
