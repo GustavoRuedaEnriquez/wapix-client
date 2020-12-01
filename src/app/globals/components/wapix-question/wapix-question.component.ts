@@ -53,18 +53,19 @@ export class WapixQuestionComponent implements OnInit {
     private socketService:SocketService,
     private route:Router
   ) {
-    /* Load sounds */
-    this.bellSound.src = '/assets/sounds/boxing bell.mp3';
-    this.bellSound.load();
-    this.boopSound.src = '/assets/sounds/boop.mp3';
-    this.boopSound.load();
-    this.themeSound.src = '/assets/sounds/nokia.mp3';
-    this.themeSound.loop = true;
-    this.themeSound.load();
-    this.themeSound.play();
-
     this.navbarConfigService.hideNavbar();
     this.activatedRoute.params.subscribe( params => {
+
+      /* Load sounds */
+      this.bellSound.src = '/assets/sounds/boxing bell.mp3';
+      this.bellSound.load();
+      this.boopSound.src = '/assets/sounds/boop.mp3';
+      this.boopSound.load();
+      this.themeSound.src = '/assets/sounds/nokia.mp3';
+      this.themeSound.loop = true;
+      this.themeSound.load();
+      this.themeSound.play();
+
       this.isLoaded = false;
       this.nextQuestionReady = false;
       this.wapixId = params.id;
