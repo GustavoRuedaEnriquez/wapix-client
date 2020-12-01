@@ -145,7 +145,7 @@ export class GuestQuestionComponent implements OnInit {
     this.resultsService.addSubmissionToQuestionOnResult(data, this.resultId, token)
      .catch( err => {
       console.error(err);
-      alert(`Sucedió un error a la hora de guardar su respuesta. Error ${err}`);
+      alert(`Sucedió un error a la hora de guardar su respuesta. Error ${JSON.stringify(err)}`);
      });
   }
 
