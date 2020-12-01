@@ -23,6 +23,7 @@ export class GuestQuestionComponent implements OnInit {
   answers:any = [];
   answerClicked = false;
   showPoints = false;
+  hasAnswered = false;
   rand = 0;
   interval:any;
 
@@ -53,6 +54,25 @@ export class GuestQuestionComponent implements OnInit {
     });
     /* Event when the question's time runs out */
     this.socketService.on('wapix-question-timeout', () => {
+      /* If the guest did not answered, send the result */
+      if(!this.hasAnswered) {
+        let data = {
+          submission : {
+            username : this.username,
+            answerSent : '',
+            pointsGained : 0
+          },
+          questionNumber : this.questionNumber
+        };
+        let token:string = this.authService.getToken();
+        /* Store answer in the database */
+        this.resultsService.addSubmissionToQuestionOnResult(data, this.resultId, token)
+         .catch( err => {
+          console.error(err);
+          alert("Sucedió un error a la hora de guardar su respuesta.");
+        });
+      }
+      this.hasAnswered = false;
       this.answerClicked = false;
       this.showPoints = true;
     });
@@ -96,6 +116,7 @@ export class GuestQuestionComponent implements OnInit {
   }
 
   clickedAnswer(answer):void {
+    this.hasAnswered = true;
     let points:number = 0;
     /* Emit answer selection to host */
     this.socketService.emit('wapix-client-has-answered', this.data.wapixId);
