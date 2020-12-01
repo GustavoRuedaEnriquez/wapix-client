@@ -136,6 +136,7 @@ export class WapixQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.themeSound.play();
     this.socketService.on('wapix-update-answers-number', () => {
       this.boopSound.play();
       this.questionsAnswered += 1;
