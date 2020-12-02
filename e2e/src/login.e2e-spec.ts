@@ -42,8 +42,8 @@ describe('Login component test', () => {
     const passwordInput = element(by.type('password'));
     const submitBtn = element(by.id('login-btn'));
 
-    emailInput.sendKeys('gare_98@hotmail.com');
-    passwordInput.sendKeys('Holaguso22');
+    emailInput.sendKeys('dummy@user.com');
+    passwordInput.sendKeys('dummypass');
     submitBtn.click();
 
     browser.wait(function() {
