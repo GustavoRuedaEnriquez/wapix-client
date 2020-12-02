@@ -17,11 +17,11 @@
         <label for="questionType-s">Seleccione Wapix</label>
         <br>
         <select name="selectWapix" class="whole-width" id="selectWapix">
-          <option *ngFor="let wapix of wapixes" value="{{wapix._id}}">{{wapix.name}}</option>
+          <option *ngFor="let wapix of wapixes" value="{{wapix.name}}">{{wapix.name}}</option>
         </select>
       </div>
       <br>
-      <button (click)="getResultByWapixId()" class="wapix-btn-dark-blue">
+      <button (click)="getResultByWapixId()" class="wapix-btn-dark-blue" id="resultsSearchBtn">
         <fa-icon id="fa-icon-searchPlus" [icon]="faSearchPlus"></fa-icon>
       </button>
     </div>
@@ -36,6 +36,7 @@
 
     <!-- div to show if you DO have results on the Wapix -->
     <div *ngIf="report.length != 0" id="wapix-list-div">
+      <h2 id="resultsDis">¡Si tienes resultados en el wapix!</h2>
       <div class="wapix-list-element-div" *ngFor="let result of report">
         <div class="wapix-list-details-div">
           <h2>Fecha: {{result.date}}</h2>

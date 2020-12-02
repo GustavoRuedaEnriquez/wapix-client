@@ -22,6 +22,7 @@
 
     <!-- div to show if you DO have Wapix -->
     <div *ngIf="wapixes.length != 0" id="wapix-list-div">
+        <h2 id="wapixDis">¡Si tienes wapixes!</h2>
         <div class="wapix-list-element-div" *ngFor="let wapix of wapixes">
             <div class="wapix-list-details-div">
                 <h2>{{wapix.name}}</h2>
