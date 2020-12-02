@@ -35,7 +35,7 @@ export class XslxExportService {
         jsonObj[j + '- ' + data.result[j].questionText] = data.result[j].submissions[k].answerSent + '';
         jsonObj[j + '- ' + "Puntos"] = data.result[j].submissions[k].pointsGained + '';
 
-        totalPoints = totalPoints + data.result[j].submissions[i].pointsGained;
+        totalPoints = totalPoints + data.result[j].submissions[k].pointsGained;
       }
 
       jsonObj["Puntos totales"] = totalPoints;
